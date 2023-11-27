@@ -21,6 +21,8 @@ Aplikasi yang kami kembangkan adalah Planet Buku (e-perpus). Yaitu aplikasi untu
 ## Daftar peminjam buku (Admin) 📋👩‍💼 (Fahrul)
 Pada modul ini admin dapat melihat daftar dari para peminjam buku dan mengedit detail peminjam buku seperti mengcancel peminjaman yang dilakukan oleh peminjam buku.
 
+Proses pengolahan peminjam akan dilakukan dengan merequest data object Peminjam dari Webserver Django dalam bentuk JSON lalu mengolahnya ke objek Flutter. Hal yang serupa juga akan dilakukan untuk daftar buku yang dipinjam oleh suatu peminjam, akan direquest ke endpoint json lalu akan dijadikan objek Flutter. Endpoint search sama dengan endpoint daftar buku yang dipinjam oleh suatu peminjam sehingga implementasinya sama. Untuk bagian form perpanjang deadline kita tinggal melakukan POST request ke endpoint terkait. Untuk tombol pengembalian buku hanyalah GET request biasa. Karena pada modul ini hanya admin yang bisa mengaksesnya, untuk setiap request kita perlu mengirim cookies yang berisi session id dari admin yang sedang login.
+
 ## Edit informasi buku (Admin) 📚✏️ (Marsya)
 Admin dapat mengubah detail dari buku, seperti menambah atau mengurangi stok buku, mengubah properti dari buku, dan menambah buku baru atau menghapus buku.
 
