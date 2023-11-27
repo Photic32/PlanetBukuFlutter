@@ -27,6 +27,8 @@ Admin dapat mengubah detail dari buku, seperti menambah atau mengurangi stok buk
 ## Lihat deskripsi buku (User) 🔍📖
 User dapat mencari dan melihat detail dari informasi buku dan melakukan peminjaman, user juga dapat melihat review dan memberikan review pada buku tersebut.
 
+Proses pengolahan buku akan dilakukan dengan merequest data object Book dari Webserver Django dalam bentuk JSON. Hal serupa juga dilakukan untuk melihat review dan pemberian review. Review akan ditampilkan dengan merequest data object Review dari Webserver dalam bentuk JSON. Form review akan diubah dalam bentuk JSON sehingga terhubung dengan database Django. Peminjaman buku juga akan terhubung dengan database Django melalui konversi data ke bentuk JSON. 
+
 ## Homepage (User) 🏠📱
 User dapat mendaftarkan akun baru atau login dengan akun yang sudah ada. Pada homepage, user dapat melihat waktu terdekat dari deadline pengembalian buku yang ada. User juga dapat membuka keranjang dari buku yang belum finalisasi peminjaman dan mengedit detail peminjaman pada keranjang.
 
