@@ -23,6 +23,13 @@ Pada modul ini admin dapat melihat daftar dari para peminjam buku dan mengedit d
 
 Proses pengolahan peminjam akan dilakukan dengan merequest data object Peminjam dari Webserver Django dalam bentuk JSON lalu mengolahnya ke objek Flutter. Hal yang serupa juga akan dilakukan untuk daftar buku yang dipinjam oleh suatu peminjam, akan direquest ke endpoint json lalu akan dijadikan objek Flutter. Endpoint search sama dengan endpoint daftar buku yang dipinjam oleh suatu peminjam sehingga implementasinya sama. Untuk bagian form perpanjang deadline kita tinggal melakukan POST request ke endpoint terkait. Untuk tombol pengembalian buku hanyalah GET request biasa. Karena pada modul ini hanya admin yang bisa mengaksesnya, untuk setiap request kita perlu mengirim cookies yang berisi session id dari admin yang sedang login.
 
+- Endpoint yang digunakan
+  1. `/adminbooks/kembali_buku/<int:id_buku>` untuk mengembalikan buku
+  2. `/adminbooks/search_book/` untuk mencari buku
+  3. `/adminbooks/edit_peminjaman/<int:id_peminjaman>` untuk mengedit peminjaman
+  4. `/adminbooks/all_user_json/` untuk mendapatkan semua data user
+  5. /adminbooks/pinjaman_json/<int:id>` untuk mendapatkan detail masing-masing pinjaman
+     
 ## Edit informasi buku (Admin) 📚✏️ (Marsya)
 Admin dapat mengubah detail dari buku, seperti menambah atau mengurangi stok buku, mengubah properti dari buku, dan menambah buku baru atau menghapus buku.
 
