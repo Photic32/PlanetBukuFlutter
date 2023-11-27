@@ -16,7 +16,7 @@ Deployed on : http://planetbuku-e05-tk.pbp.cs.ui.ac.id
 
 Aplikasi yang kami kembangkan adalah Planet Buku (e-perpus). Yaitu aplikasi untuk melihat informasi buku dan melakukan peminjaman buku secara online. Aplikasi ini dibuat agar peminjam dapat mengetahui ketersediaan buku dan dapat melihat review dari buku yang ingin dipinjam sebelum datang ke perpustakaan. Dengan mengetahui ketersediaan dan review dari buku sebelum menghabiskan waktu dan energi untuk ke perpustakaan, diharapkan masyarakat bisa jadi lebih tertarik untuk membaca buku.
 
-# Daftar Modul 🖥️
+# Daftar Modul & Integrasi Web Service 🖥️
 
 ## Daftar peminjam buku (Admin) 📋👩‍💼
 Pada modul ini admin dapat melihat daftar dari para peminjam buku dan mengedit detail peminjam buku seperti mengcancel peminjaman yang dilakukan oleh peminjam buku.
@@ -29,6 +29,11 @@ User dapat mencari dan melihat detail dari informasi buku dan melakukan peminjam
 
 ## Homepage (User) 🏠📱
 User dapat mendaftarkan akun baru atau login dengan akun yang sudah ada. Pada homepage, user dapat melihat waktu terdekat dari deadline pengembalian buku yang ada. User juga dapat membuka keranjang dari buku yang belum finalisasi peminjaman dan mengedit detail peminjaman pada keranjang.
+
+Proses autentikasi dan Autorisasi user dilakukan melalui backend webserver, Bagian app hanya menerima variabel-variabel yang akan dilanjutkan ke endpoint webserver lalu diautentikasi oleh fungsi pada backend webserver. 
+
+Proses pengolahan cart juga dilakukan dengan merequest data object cart dari webserver dalam bentuk JSON yang lalu diparse oleh aplikasi menjadi string. Perubahan pada status cart seperti object difinalisasi atau dikeluarkan dari cart juga akan dikirim ke endpoint webserver dan webserver akan melakukan pengelolaan pada object di database.
+
 
 ## Daftar buku yang sedang atau sudah dipinjam (User) 📚🔄
 User dapat melihat daftar buku yang sedang dipinjam atau sudah dipinjam. User juga dapat memberikan review buku atau memperpendek durasi peminjaman buku yang sedang dipinjam.
