@@ -24,6 +24,9 @@ Pada modul ini admin dapat melihat daftar dari para peminjam buku dan mengedit d
 ## Edit informasi buku (Admin) 📚✏️
 Admin dapat mengubah detail dari buku, seperti menambah atau mengurangi stok buku, mengubah properti dari buku, dan menambah buku baru atau menghapus buku.
 
+Alur pengeditan informasi buku dilakukan dengan mengirim request data Object Book yang diperlukan untuk menambah, menguraing stock, menghapus dan mengedit buku. 
+Untuk menambahkan dan mengedit informasi buku menggunakan Form, akan dikirimkan request dari webserver Django dalam bentuk JSON, kemudian data akan diubah dalam bentuk JSON agar dapat terhubung dengan database. Kemudian akan diatur autentikasi agar hanya admin yang dapat mengedit informasi buku.
+
 ## Lihat deskripsi buku (User) 🔍📖
 User dapat mencari dan melihat detail dari informasi buku dan melakukan peminjaman, user juga dapat melihat review dan memberikan review pada buku tersebut.
 
@@ -38,7 +41,9 @@ Proses pengolahan cart juga dilakukan dengan merequest data object cart dari web
 
 
 ## Daftar buku yang sedang atau sudah dipinjam (User) 📚🔄
-User dapat melihat daftar buku yang sedang dipinjam atau sudah dipinjam. User juga dapat memberikan review buku atau memperpendek durasi peminjaman buku yang sedang dipinjam.
+User dapat melihat daftar buku yang sedang dipinjam atau sudah dipinjam. User juga dapat mengembalikan buku yang sedang dipinjam atau memberikan review pada buku.
+
+Proses pengintegrasian diawal dengan pengambilan object buku dengan endpoint JSON untuk mengetahui buku apa saja yang telah dipinjam atau dikembalikan oleh user. Daftar buku yang sedang dipinjam dan telah dikembalikan kemudian akan di tampilkan sesuai respon JSON. Buku yang sedang dipinjam kemudian dapat dikembalikan lalu mengirimkan request ke endpoint json. kemudian web service akan mengupdate data buku. Buku yang telah dikembalikan user dapat menambahkan kesan pada buku tersebut. Form kesan diubah kedalam JSON sehingga terhubung dengan database Django. Untuk menampilkan kesan perlu merequest data object kesan dari webserver.
 
 # Sumber dataset katalog buku 🌐📚
 https://www.kaggle.com/datasets/saurabhbagchi/books-dataset
