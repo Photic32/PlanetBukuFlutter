@@ -18,21 +18,21 @@ Aplikasi yang kami kembangkan adalah Planet Buku (e-perpus). Yaitu aplikasi untu
 
 # Daftar Modul & Integrasi Web Service 🖥️
 
-## Daftar peminjam buku (Admin) 📋👩‍💼
+## Daftar peminjam buku (Admin) 📋👩‍💼 (Fahrul)
 Pada modul ini admin dapat melihat daftar dari para peminjam buku dan mengedit detail peminjam buku seperti mengcancel peminjaman yang dilakukan oleh peminjam buku.
 
-## Edit informasi buku (Admin) 📚✏️
+## Edit informasi buku (Admin) 📚✏️ (Marsya)
 Admin dapat mengubah detail dari buku, seperti menambah atau mengurangi stok buku, mengubah properti dari buku, dan menambah buku baru atau menghapus buku.
 
 Alur pengeditan informasi buku dilakukan dengan mengirim request data Object Book yang diperlukan untuk menambah, menguraing stock, menghapus dan mengedit buku. 
 Untuk menambahkan dan mengedit informasi buku menggunakan Form, akan dikirimkan request dari webserver Django dalam bentuk JSON, kemudian data akan diubah dalam bentuk JSON agar dapat terhubung dengan database. Kemudian akan diatur autentikasi agar hanya admin yang dapat mengedit informasi buku.
 
-## Lihat deskripsi buku (User) 🔍📖
+## Lihat deskripsi buku (User) 🔍📖 (Alma)
 User dapat mencari dan melihat detail dari informasi buku dan melakukan peminjaman, user juga dapat melihat review dan memberikan review pada buku tersebut.
 
 Proses pengolahan buku akan dilakukan dengan merequest data object Book dari Webserver Django dalam bentuk JSON. Hal serupa juga dilakukan untuk melihat review dan pemberian review. Review akan ditampilkan dengan merequest data object Review dari Webserver dalam bentuk JSON. Form review akan diubah dalam bentuk JSON sehingga terhubung dengan database Django. Peminjaman buku juga akan terhubung dengan database Django melalui konversi data ke bentuk JSON. 
 
-## Homepage (User) 🏠📱
+## Homepage (User) 🏠📱 (Mahdy)
 User dapat mendaftarkan akun baru atau login dengan akun yang sudah ada. Pada homepage, user dapat melihat waktu terdekat dari deadline pengembalian buku yang ada. User juga dapat membuka keranjang dari buku yang belum finalisasi peminjaman dan mengedit detail peminjaman pada keranjang.
 
 Proses autentikasi dan Autorisasi user dilakukan melalui backend webserver, Bagian app hanya menerima variabel-variabel yang akan dilanjutkan ke endpoint webserver lalu diautentikasi oleh fungsi pada backend webserver. 
@@ -40,7 +40,7 @@ Proses autentikasi dan Autorisasi user dilakukan melalui backend webserver, Bagi
 Proses pengolahan cart juga dilakukan dengan merequest data object cart dari webserver dalam bentuk JSON yang lalu diparse oleh aplikasi menjadi string. Perubahan pada status cart seperti object difinalisasi atau dikeluarkan dari cart juga akan dikirim ke endpoint webserver dan webserver akan melakukan pengelolaan pada object di database.
 
 
-## Daftar buku yang sedang atau sudah dipinjam (User) 📚🔄
+## Daftar buku yang sedang atau sudah dipinjam (User) 📚🔄 (Clara)
 User dapat melihat daftar buku yang sedang dipinjam atau sudah dipinjam. User juga dapat mengembalikan buku yang sedang dipinjam atau memberikan review pada buku.
 
 Proses pengintegrasian diawal dengan pengambilan object buku dengan endpoint JSON untuk mengetahui buku apa saja yang telah dipinjam atau dikembalikan oleh user. Daftar buku yang sedang dipinjam dan telah dikembalikan kemudian akan di tampilkan sesuai respon JSON. Buku yang sedang dipinjam kemudian dapat dikembalikan lalu mengirimkan request ke endpoint json. kemudian web service akan mengupdate data buku. Buku yang telah dikembalikan user dapat menambahkan kesan pada buku tersebut. Form kesan diubah kedalam JSON sehingga terhubung dengan database Django. Untuk menampilkan kesan perlu merequest data object kesan dari webserver.
