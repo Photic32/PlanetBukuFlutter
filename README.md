@@ -44,6 +44,12 @@ Proses pengolahan buku akan dilakukan dengan merequest data object Book dari Web
 ## Homepage (User) 🏠📱 (Mahdy)
 User dapat mendaftarkan akun baru atau login dengan akun yang sudah ada. Pada homepage, user dapat melihat waktu terdekat dari deadline pengembalian buku yang ada. User juga dapat membuka keranjang dari buku yang belum finalisasi peminjaman dan mengedit detail peminjaman pada keranjang.
 
+**Endpoint yang digunakan**
+  1. `/auth/login/` untuk login. Method `POST`
+  2. `/auth/register/` untuk mendaftarkan akun. Method `GET` 
+  3. `/cancel-cart/<id_buku>/` untuk remove buku dari cart cart. Method `POST`
+  4. `/add-cart/<id_buku>/` untuk finalisasi peminjaman buku. Method `POST`
+
 Proses autentikasi dan Autorisasi user dilakukan melalui backend webserver, Bagian app hanya menerima variabel-variabel yang akan dilanjutkan ke endpoint webserver lalu diautentikasi oleh fungsi pada backend webserver. 
 
 Proses pengolahan cart juga dilakukan dengan merequest data object cart dari webserver dalam bentuk JSON yang lalu diparse oleh aplikasi menjadi string. Perubahan pada status cart seperti object difinalisasi atau dikeluarkan dari cart juga akan dikirim ke endpoint webserver dan webserver akan melakukan pengelolaan pada object di database.
