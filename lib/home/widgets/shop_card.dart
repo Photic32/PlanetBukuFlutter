@@ -60,6 +60,12 @@ class ShopCard extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => EditBuku(),
                 ));
+          } else if (item.name == "Login") {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                ));
           } else if (item.name == "Logout") {
             final response = await request.logout(
                 // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
