@@ -82,9 +82,10 @@ class _LoginPageState extends State<LoginPage> {
                   String message = response['message'];
                   String uname = response['username'];
                   bool is_staff = response['is_staff'];
+
                   if (is_staff == true) {
                     String id = request.jsonData.toString();
-                    debugPrint('response: $id ');
+                    debugPrint('response: $id');
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomeAdminPage()),
