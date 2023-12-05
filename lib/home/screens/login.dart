@@ -82,8 +82,10 @@ class _LoginPageState extends State<LoginPage> {
                   String message = response['message'];
                   String uname = response['username'];
                   bool is_staff = response['is_staff'];
+
                   if (is_staff == true) {
-                    debugPrint('response: $response');
+                    String id = request.jsonData.toString();
+                    debugPrint('response: $id');
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomeAdminPage()),
@@ -93,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                       ..showSnackBar(SnackBar(
                           content: Text("$message Selamat datang, $uname.")));
                   } else {
-                    debugPrint('response: $response');
+                    String id = request.jsonData.toString();
+                    debugPrint('response: $id ');
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
