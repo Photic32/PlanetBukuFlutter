@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 // Untuk menyambungkan Android emulator dengan Django pada localhost,
                 // gunakan URL http://10.0.2.2/
                 final response = await request.login(
-                    "https://planetbuku.firdausfarul.repl.co/auth/login/", {
+                    "https://planetbuku1.firdausfarul.repl.co/auth/login/", {
                   'username': username,
                   'password': password,
                 });
