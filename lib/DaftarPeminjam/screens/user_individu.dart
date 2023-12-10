@@ -179,7 +179,7 @@ class _ProductPageState extends State<UserIndividu> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    'Return Date: ${buku.deadline}',
+                                    'Deadline Pengembalian: ${buku.deadline}',
                                     style: TextStyle(
                                         color: Colors.black.withOpacity(0.6)),
                                   ),
@@ -188,60 +188,75 @@ class _ProductPageState extends State<UserIndividu> {
                             ),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: TextField(
-                                  //set size field
-                                  style: TextStyle(fontSize: 14),
-                                  cursorHeight: 1,
+                        if (buku.status == 'Dipinjam')
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: TextField(
+                                    //set size field
+                                    style: TextStyle(fontSize: 14),
+                                    cursorHeight: 1,
 
-                                  controller: _daysController,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    labelText: 'Additional days',
-                                    border: OutlineInputBorder(),
+                                    controller: _daysController,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      labelText: 'Additional days',
+                                      border: OutlineInputBorder(),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
 
-                            // Your existing ElevatedButton for extending the loan
-                            ElevatedButton(
-                              onPressed: () {
-                                if (_daysController!.text.isNotEmpty) {
-                                  int additionalDays =
-                                      int.tryParse(_daysController.text) ?? 0;
-                                  DateTime currentReturnDate = buku.deadline;
-                                  DateTime newReturnDate = currentReturnDate
-                                      .add(Duration(days: additionalDays));
+                              // Your existing ElevatedButton for extending the loan
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (_daysController!.text.isNotEmpty) {
+                                    int additionalDays =
+                                        int.tryParse(_daysController.text) ?? 0;
+                                    DateTime currentReturnDate = buku.deadline;
+                                    DateTime newReturnDate = currentReturnDate
+                                        .add(Duration(days: additionalDays));
 
-                                  // Here, you would call your logic to update the loan with the new return date.
-                                  // For example:
-                                  extendLoan(buku.peminjamanId, newReturnDate);
-                                }
-                              },
-                              style:
-                                  ElevatedButton.styleFrom(primary: Colors.red),
-                              child: Text('Extend',
-                                  style: TextStyle(color: Colors.white)),
-                            ),
-                            SizedBox(width: 8),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Return book logic
-                                returnBook(buku.peminjamanId.toString());
-                              },
-                              style:
-                                  ElevatedButton.styleFrom(primary: Colors.red),
-                              child: Text('Return',
-                                  style: TextStyle(color: Colors.white)),
-                            ),
-                          ],
-                        ),
+                                    // Here, you would call your logic to update the loan with the new return date.
+                                    // For example:
+                                    extendLoan(
+                                        buku.peminjamanId, newReturnDate);
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.red),
+                                child: Text('Extend',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                              SizedBox(width: 8),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Return book logic
+                                  returnBook(buku.peminjamanId.toString());
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.red),
+                                child: Text('Return',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            ],
+                          )
+                        else if (buku.status == 'dikembalikan')
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Text(
+                                "Buku sudah dikembalikan",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                       ],
                     ),
                   ),
