@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 import 'package:planetbuku/DaftarPeminjam/models/user.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
@@ -32,8 +31,6 @@ class _ProductPageState extends State<DaftarPeminjam> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Daftar Peminjam'),
@@ -59,7 +56,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                 } else {
                   return Column(
                     children: [
-                      SizedBox(height: 8),
+                      SizedBox(height: 16),
                       Text(
                         'Daftar Peminjam', // Text yang menandakan toko
                         textAlign: TextAlign.center,
@@ -68,7 +65,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 16),
                       Expanded(
                         child: ListView.builder(
                           itemCount: snapshot.data.length,
@@ -122,7 +119,6 @@ class _ProductPageState extends State<DaftarPeminjam> {
                     ],
                   );
                 }
-                ;
               }
             }));
   }

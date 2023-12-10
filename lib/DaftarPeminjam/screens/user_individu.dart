@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:planetbuku/DaftarPeminjam/models/user.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:planetbuku/DaftarPeminjam/models/user.dart';
 import 'package:planetbuku/DaftarPeminjam/models/peminjam.dart';
 
 class UserIndividu extends StatefulWidget {
@@ -110,6 +108,17 @@ class _ProductPageState extends State<UserIndividu> {
           Map<int, TextEditingController> _controllers = {};
 
           return Column(children: <Widget>[
+            SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                "Buku yang dipinjam oleh ${widget.pengguna.username}",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
