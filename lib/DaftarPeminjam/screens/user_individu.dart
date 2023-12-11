@@ -202,7 +202,7 @@ class _ProductPageState extends State<UserIndividu> {
                             ),
                           ],
                         ),
-                        if (buku.status == 'Dipinjam')
+                        if (buku.status == 'dipinjam')
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
