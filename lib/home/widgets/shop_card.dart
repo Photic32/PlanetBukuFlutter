@@ -55,10 +55,15 @@ class ShopCard extends StatelessWidget {
                   builder: (context) => EditBuku(),
                 ));
           } else if (item.name == "Lihat Cart") {
+            final response = await request.logout(
+                // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                "http://127.0.0.1:8000/auth/tes/");
+            String temp = response.toString();
+            debugPrint('$temp');
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EditBuku(),
+                  builder: (context) => HomePage(),
                 ));
           } else if (item.name == "Login") {
             Navigator.push(
