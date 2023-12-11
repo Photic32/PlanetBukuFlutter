@@ -139,6 +139,11 @@ class _ProductPageState extends State<UserIndividu> {
               itemCount: peminjam.bukuDipinjam.length,
               itemBuilder: (BuildContext context, int index) {
                 var buku = peminjam.bukuDipinjam[index];
+                String tanggal = buku.deadline.day.toString() +
+                    '-' +
+                    buku.deadline.month.toString() +
+                    '-' +
+                    buku.deadline.year.toString();
                 if (!_controllers.containsKey(index)) {
                   _controllers[index] = TextEditingController();
                 }
@@ -177,7 +182,7 @@ class _ProductPageState extends State<UserIndividu> {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
-                                    buku.isbn,
+                                    'ISBN : ${buku.isbn}',
                                     style: TextStyle(color: Colors.grey),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -188,7 +193,7 @@ class _ProductPageState extends State<UserIndividu> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    'Deadline Pengembalian: ${buku.deadline}',
+                                    'Deadline Pengembalian: ${tanggal}',
                                     style: TextStyle(
                                         color: Colors.black.withOpacity(0.6)),
                                   ),
