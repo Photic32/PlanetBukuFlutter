@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 // Untuk menyambungkan Android emulator dengan Django pada localhost,
                 // gunakan URL http://10.0.2.2/
                 final response =
-                    await request.login("http://localhost:8000/auth/login/", {
+                    await request.login("https://planetbukutes-95487a8dd763.herokuapp.com/auth/login/", {
                   'username': username,
                   'password': password,
                 });
@@ -84,8 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                   bool is_staff = response['is_staff'];
 
                   if (is_staff == true) {
-                    Map<String, Cookie> id = request.cookies;
-                    id.forEach((k, v) => debugPrint("Key : $k, Value : $v"));
+                    // Map<String, Cookie> id = request.cookies;
+                    // id.forEach((k, v) => debugPrint("Key : $k, Value : $v"));
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomeAdminPage()),
@@ -95,8 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                       ..showSnackBar(SnackBar(
                           content: Text("$message Selamat datang, $uname.")));
                   } else {
-                    String temp = response.toString();
-                    debugPrint('$temp');
+                    // String temp = response.toString();
+                    // debugPrint('$temp');
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => HomePage()),
