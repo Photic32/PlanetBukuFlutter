@@ -20,7 +20,7 @@ class BookDetailPage extends StatefulWidget {
 class BookDetailPageState extends State<BookDetailPage> {
   Future<List<Review>> fetchReview() async {
     var url = Uri.parse(
-        'https://planetbuku.firdausfarul.repl.co/browse/get-review-json/${widget.book.pk}/');
+        'https://planetbuku1.firdausfarul.repl.co/browse/get-review-json/${widget.book.pk}/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -45,7 +45,7 @@ class BookDetailPageState extends State<BookDetailPage> {
     final request = context.read<CookieRequest>();
     try {
       var response = await request
-          .get('https://planetbuku.firdausfarul.repl.co/browse/add-to-cart-flutter/$bookId/');
+          .get('https://planetbuku1.firdausfarul.repl.co/browse/add-to-cart-flutter/$bookId/');
       if (response != null && response["status"]) {
         if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
@@ -207,7 +207,7 @@ class BookDetailPageState extends State<BookDetailPage> {
                 const SizedBox(width: 15),
                 SizedBox(
                   height: 30,
-                  width: 95,
+                  width: 100,
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Colors.pink),

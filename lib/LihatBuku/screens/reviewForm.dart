@@ -125,7 +125,7 @@ class _ReviewFormPageState extends State<ReviewFormPage> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               final response = await request.postJson(
-                                "https://planetbuku.firdausfarul.repl.co/browse/give-review-flutter/${widget.book.pk}/",
+                                "https://planetbuku1.firdausfarul.repl.co/browse/give-review-flutter/${widget.book.pk}/",
                                 jsonEncode(<String, dynamic>{
                                   'review': _review,
                                   'rate': _rate.toString(),

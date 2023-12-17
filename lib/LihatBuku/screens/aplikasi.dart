@@ -7,6 +7,8 @@ import 'package:planetbuku/LihatBuku/screens/bookDetail.dart';
 import 'package:planetbuku/LihatBuku/widgets/customBookListItem.dart';
 
 class LihatBuku extends StatefulWidget {
+  const LihatBuku({super.key});
+
   @override
   LihatBukuState createState() => LihatBukuState();
 }
@@ -36,7 +38,8 @@ class LihatBukuState extends State<LihatBuku> {
   }
 
   Future<List<Book>> fetchBooks() async {
-    var url = Uri.parse('https://planetbuku.firdausfarul.repl.co/adminbook/get_books_json/');
+    var url = Uri.parse(
+        'https://planetbuku1.firdausfarul.repl.co/adminbook/get_books_json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -101,13 +104,13 @@ class LihatBukuState extends State<LihatBuku> {
               isFullScreen: false,
               suggestionsBuilder:
                   (BuildContext context, SearchController controller) {
-                return Iterable.empty();
+                return const Iterable.empty();
               },
               builder: (BuildContext context, SearchController controller) {
                 return SearchBar(
                   controller: controller,
                   padding: MaterialStateProperty.all<EdgeInsets>(
-                    EdgeInsets.symmetric(horizontal: 16.0),
+                    const EdgeInsets.symmetric(horizontal: 16.0),
                   ),
                   onChanged: (value) => _runFilter(value),
                   leading: const Icon(Icons.search),
