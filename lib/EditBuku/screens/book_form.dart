@@ -39,8 +39,8 @@ class _BookFormPageState extends State<BookFormPage> {
             'Form Tambah Buku',
           ),
         ),
-      backgroundColor: Colors.grey[850],
-        foregroundColor:  Colors.pink,
+        backgroundColor: Colors.grey[850],
+        foregroundColor: Colors.pink,
       ),
       drawer: const LeftDrawer(),
       body: Form(
@@ -82,7 +82,6 @@ class _BookFormPageState extends State<BookFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  
                   onChanged: (String? value) {
                     setState(() {
                       _stock = int.parse(value!);
@@ -132,7 +131,6 @@ class _BookFormPageState extends State<BookFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  
                   onChanged: (String? value) {
                     setState(() {
                       _publicationYear = int.parse(value!);
@@ -263,22 +261,23 @@ class _BookFormPageState extends State<BookFormPage> {
                     return null;
                   },
                 ),
-              ),              
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 201, 142, 124)),
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 201, 142, 124)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                          // Kirim ke Django dan tunggu respons
-                          // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                          final response = await request.postJson(
-                          "http://127.0.0.1:8000/adminbook/create-flutter/",
-                          jsonEncode(<String, String>{
+                        // Kirim ke Django dan tunggu respons
+                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                        final response = await request.postJson(
+                            "https://planetbuku1.firdausfarul.repl.co/adminbook/create-flutter/",
+                            jsonEncode(<String, String>{
                               'title': _title,
                               'stock': _stock.toString(),
                               'author': _author,
@@ -288,26 +287,25 @@ class _BookFormPageState extends State<BookFormPage> {
                               'image_s': _imageS,
                               'image_m': _imageM,
                               'image_l': _imageL,
-                              
-                          }));
-                          if (response['status'] == 'success') {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                              content: Text("Buku baru berhasil disimpan!"),
-                              ));
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => EditBuku()),
-                              );
-                          } else {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                  content:
-                                      Text("Terdapat kesalahan, silakan coba lagi."),
-                              ));
-                          }
+                            }));
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Buku baru berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => EditBuku()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("Terdapat kesalahan, silakan coba lagi."),
+                          ));
+                        }
                       }
-                  },
+                    },
                     child: const Text(
                       "Save",
                       style: TextStyle(color: Colors.white),

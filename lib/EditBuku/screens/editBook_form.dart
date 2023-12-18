@@ -321,7 +321,7 @@ class _EditBookPageState extends State<EditBookPage> {
                           // Kirim ke Django dan tunggu respons
                           // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                           final response = await request.postJson(
-                          "http://127.0.0.1:8000/adminbook/edit-flutter/${widget.item.pk}/",
+                          "https://planetbuku1.firdausfarul.repl.co/adminbook/edit-flutter/${widget.item.pk}/",
                           jsonEncode(<String, dynamic>{
                               'title': _title,
                               'stock': _stock.toString(),

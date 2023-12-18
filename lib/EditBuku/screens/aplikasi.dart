@@ -16,7 +16,7 @@ class EditBuku extends StatefulWidget {
 class _EditBukuState extends State<EditBuku> {
   Future<List<Book>> fetchProduct() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    var url = Uri.parse('http://127.0.0.1:8000/adminbook/get_books_json/');
+    var url = Uri.parse('https://planetbuku1.firdausfarul.repl.co/adminbook/get_books_json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/get_books_json"},
