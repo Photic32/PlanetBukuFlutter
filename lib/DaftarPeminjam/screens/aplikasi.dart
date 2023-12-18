@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 import 'package:planetbuku/DaftarPeminjam/models/user.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:planetbuku/DaftarPeminjam/screens/user_individu.dart';
 
 class DaftarPeminjam extends StatefulWidget {
   const DaftarPeminjam({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
   Future<List<User>> fetchUser() async {
     final request = context.watch<CookieRequest>();
     var response = await request.get(
-      'http://127.0.0.1:8000/adminusers/all_user_json/',
+      'https://planetbuku1.firdausfarul.repl.co/adminusers/all_user_json/',
     );
     // melakukan konversi data json menjadi object Product
     List<User> list_user = [];
@@ -31,11 +31,9 @@ class _ProductPageState extends State<DaftarPeminjam> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Product'),
+          title: const Text('Daftar Peminjam'),
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
@@ -48,7 +46,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                   return const Column(
                     children: [
                       Text(
-                        "Tidak ada data produk.",
+                        "Tidak ada User untuk Saat Ini.",
                         style:
                             TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                       ),
@@ -56,32 +54,70 @@ class _ProductPageState extends State<DaftarPeminjam> {
                     ],
                   );
                 } else {
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => InkWell(
-                              child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].username}",
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                  return Column(
+                    children: [
+                      SizedBox(height: 16),
+                      Text(
+                        'Daftar Peminjam', // Text yang menandakan toko
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              child: ListTile(
+                                title: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Text(
+                                        snapshot.data[index].username,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'User Id : ${snapshot.data[index].userId.toString()}',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Books Borrowed: ${snapshot.data[index].jumlahBukuDipinjam}',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(height: 10),
-                                Text("${snapshot.data![index].userId}"),
-                                const SizedBox(height: 10),
-                                Text(
-                                    "${snapshot.data![index].jumlahBukuDipinjam}"),
-                              ],
-                            ),
-                          )));
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UserIndividu(
+                                        pengguna: snapshot.data[index],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  );
                 }
               }
             }));
