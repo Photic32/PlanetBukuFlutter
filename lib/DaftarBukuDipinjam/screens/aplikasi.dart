@@ -112,7 +112,7 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                           // Call the return_book API endpoint
                                           final response = await http.get(
                                             Uri.parse(
-                                                'https://planetbuku1.firdausfarul.repl.co/return-book/${snapshot.data!.dipinjam[index].peminjamanId}'), // Replace with your actual URL
+                                                'https://planetbuku1.firdausfarul.repl.co/borrowed_book_list/return-book/${snapshot.data!.dipinjam[index].peminjamanId}'), // Replace with your actual URL
                                           );
 
                                           if (response.statusCode == 200) {
