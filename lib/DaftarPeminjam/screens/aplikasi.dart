@@ -17,7 +17,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
   Future<List<User>> fetchUser() async {
     final request = context.watch<CookieRequest>();
     var response = await request.get(
-      'https://planetbuku.firdausfarul.repl.co/adminusers/all_user_json/',
+      'http://127.0.0.1:8000/adminusers/all_user_json/',
     );
     // melakukan konversi data json menjadi object Product
     List<User> list_user = [];
