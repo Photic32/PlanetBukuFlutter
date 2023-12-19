@@ -16,9 +16,10 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login',
+      title: 'Login to PlanetBuku',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        canvasColor: Colors.grey[850],
+        primarySwatch: Colors.pink,
       ),
       home: const LoginPage(),
     );
@@ -49,96 +50,131 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              style: TextStyle(color: Colors.white),
               controller: _usernameController,
               decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(      
+                  borderSide: BorderSide(color: Colors.white),   
+                ), 
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                ),
                 labelText: 'Username',
+                labelStyle: TextStyle(color: Colors.white,),
               ),
             ),
             const SizedBox(height: 12.0),
             TextField(
+              style: TextStyle(color: Colors.white),
               controller: _passwordController,
               decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(      
+                  borderSide: BorderSide(color: Colors.white),   
+                ), 
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                ),
                 labelText: 'Password',
+                labelStyle: TextStyle(color: Colors.white,),
               ),
               obscureText: true,
             ),
             const SizedBox(height: 24.0),
-            ElevatedButton(
-              onPressed: () async {
-                String username = _usernameController.text;
-                String password = _passwordController.text;
+            Container(
+              margin: const EdgeInsets.only(top: 10.0),
+              child: Wrap(
+                spacing: 20,
+                runSpacing: 20,
+                children: [
+                  ElevatedButton(
+                  onPressed: () async {
+                    String username = _usernameController.text;
+                    String password = _passwordController.text;
 
-                // Cek kredensial
-                // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                // Untuk menyambungkan Android emulator dengan Django pada localhost,
-                // gunakan URL http://10.0.2.2/
-                final response = await request.login(
-                    "https://planetbuku1.firdausfarul.repl.co/auth/login/", {
-                  'username': username,
-                  'password': password,
-                });
+                    // Cek kredensial
+                    // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                    // Untuk menyambungkan Android emulator dengan Django pada localhost,
+                    // gunakan URL http://10.0.2.2/
+                    final response =
+                        await request.login("https://planetbukutes-95487a8dd763.herokuapp.com/auth/login/", {
+                      'username': username,
+                      'password': password,
+                    });
 
-                if (request.loggedIn) {
-                  String message = response['message'];
-                  String uname = response['username'];
-                  bool is_staff = response['is_staff'];
+                    if (request.loggedIn) {
+                      String message = response['message'];
+                      String uname = response['username'];
+                      bool is_staff = response['is_staff'];
 
-                  if (is_staff == true) {
-                    // Map<String, Cookie> id = request.cookies;
-                    // id.forEach((k, v) => debugPrint("Key : $k, Value : $v"));
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeAdminPage()),
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(SnackBar(
-                          content: Text("$message Selamat datang, $uname.")));
-                  } else {
-                    // String temp = response.toString();
-                    // debugPrint('$temp');
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(SnackBar(
-                          content: Text("$message Selamat datang, $uname.")));
-                  }
-                } else {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Login Gagal'),
-                      content: Text(response['message']),
-                      actions: [
-                        TextButton(
-                          child: const Text('OK'),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                      if (is_staff == true) {
+                        // Map<String, Cookie> id = request.cookies;
+                        // id.forEach((k, v) => debugPrint("Key : $k, Value : $v"));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeAdminPage()),
+                        );
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                              content: Text("$message Selamat datang, $uname.")));
+                      } else {
+                        // String temp = response.toString();
+                        // debugPrint('$temp');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                              content: Text("$message Selamat datang, $uname.")));
+                      }
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Login Gagal'),
+                          content: Text(response['message']),
+                          actions: [
+                            TextButton(
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                }
-              },
-              child: const Text('Login'),
+                      );
+                    }
+                  },
+                  child: const Text('Login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeGuestPage()),
+                      );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                            SnackBar(content: Text("Selamat datang, Guest User.")));
+                    },
+                    child: const Text('Login as Guest'),
+                  ),
+                ],
+              ),
+
+  
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeGuestPage()),
-                );
-                ScaffoldMessenger.of(context)
-                  ..hideCurrentSnackBar()
-                  ..showSnackBar(
-                      SnackBar(content: Text("Selamat datang, Guest User.")));
-              },
-              child: const Text('Login as Guest'),
-            ),
+            
+            
           ],
         ),
       ),
