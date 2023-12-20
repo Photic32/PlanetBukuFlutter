@@ -92,7 +92,10 @@ class _ProductPageState extends State<UserIndividu> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Peminjam'),
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
+      backgroundColor: Colors.grey[850],
       drawer: const AdminDrawer(), // Assuming LeftDrawer is a defined widget
       body: FutureBuilder<Peminjam>(
         future: fetchUser(searchController.text),
@@ -173,8 +176,6 @@ class _ProductPageState extends State<UserIndividu> {
                           children: <Widget>[
                             Image.network(
                               buku.image,
-                              width: 50,
-                              height: 100,
                               fit: BoxFit.cover,
                             ),
                             SizedBox(width: 10),

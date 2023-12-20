@@ -45,7 +45,10 @@ class _ProductPageState extends State<DaftarPeminjam> {
             'Daftar Peminjam',
             style: TextStyle(color: Colors.white),
           ),
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
+        backgroundColor: Colors.grey[850],
         drawer: const AdminDrawer(),
         body: FutureBuilder(
             future: fetchUser(),
