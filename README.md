@@ -83,5 +83,40 @@ Pengguna yang memiliki akses ke seluruh page, dapat mengedit buku yang dipinjam 
 ## Guest 👥🚫
 User yang belum melakukan registrasi/login dapat mengakses fitur Register/Login
 
+# Panduan Build
+1. Lakukan instalasi flutter pada perangkat anda
+  MAC OS: https://docs.flutter.dev/get-started/install/macos 
+  Windows: https://docs.flutter.dev/get-started/install/windows 
+  Linux: https://docs.flutter.dev/get-started/install/linux 
+  Pastikan anda menginstal flutter versi terkini.
+2. Instal IDE pilihan anda untuk mengembangkan aplikasi Flutter seperti Visual Studio Code atau Android Studio.
+3. Lakukan clone repositori proyek flutter anda.
+4. Untuk menjalankan proyek flutter, masuk ke direktori anda menyimpan proyek flutter, kemudian jalankan perintah flutter run pada terminal.
+5. Lakukan deployment aplikasi flutter ke AppCenter.
+6. Buat key untuk aplikasi dan mengatur automasi agar skrip CI/CD dengan menjalankan perintah berikut
+  MAC OS: 
+  keytool -genkey -v -keystore ~/release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release
+
+  Windows: 
+  keytool -genkey -v -keystore %userprofile%\release-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias release
+
+7. Pembuatan skrip github action dengan buat sebuah base64 string sebagai representasi dari keystore file yang akan kita simpan.
+8. Buat repository secrets pada repository Github, berisi 
+  `GH_TOKEN`
+, 
+  `KEY_JKS`
+, dan 
+  `KEY_PASSWORD`
+9. Tambahkan 
+  `staging.yml`
+, 
+  `pre-release.yml`
+, dan 
+  `realease.yml`
+10. Lakukan penambahan skrip CI/CD untuk App Center, dan lakukan konfigurasi lanjutan pada App Center.
+11. Save & build
+12. Download hasil build langsung atau melalui link distribution group pada HP anda.
+13. jalankan APK pada HP anda.
+
 ## Link Tautan Berita Acara
 https://docs.google.com/spreadsheets/d/1a4qiDsroPt03P-hFrFFFYoMr1ZF1c-CBWBh9ApLa2BE/edit#gid=0
