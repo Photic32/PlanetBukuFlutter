@@ -97,6 +97,7 @@ class LihatBukuState extends State<LihatBuku> {
             ),
           ),
           backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
         body: Column(
           children: [

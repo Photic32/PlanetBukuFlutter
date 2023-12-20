@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarPeminjam/models/peminjam.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 
 class UserIndividu extends StatefulWidget {
   final User pengguna;
@@ -91,8 +92,12 @@ class _ProductPageState extends State<UserIndividu> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Peminjam'),
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
-      drawer: const LeftDrawer(), // Assuming LeftDrawer is a defined widget
+      backgroundColor: Colors.grey[850],
+
+      drawer: const AdminDrawer(), // Assuming LeftDrawer is a defined widget
       body: FutureBuilder<Peminjam>(
         future: fetchUser(searchController.text),
         builder: (BuildContext context, AsyncSnapshot<Peminjam> snapshot) {
@@ -116,17 +121,27 @@ class _ProductPageState extends State<UserIndividu> {
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: searchController,
                 decoration: InputDecoration(
                   labelText: 'Search Books',
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.search),
+                    icon: IconTheme(
+                      data: IconThemeData(
+                        color: Colors.white,
+                      ),
+                      child: Icon(Icons.search),
+                    ),
                     onPressed: () {
                       setState(() {});
                     },
@@ -149,6 +164,7 @@ class _ProductPageState extends State<UserIndividu> {
                 }
                 var _daysController = _controllers[index];
                 return Card(
+                  color: Colors.grey[800],
                   elevation: 4.0,
                   margin: const EdgeInsets.all(10.0),
                   child: Padding(
@@ -172,8 +188,10 @@ class _ProductPageState extends State<UserIndividu> {
                                 children: <Widget>[
                                   Text(
                                     buku.title,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
@@ -195,7 +213,7 @@ class _ProductPageState extends State<UserIndividu> {
                                   Text(
                                     'Deadline Pengembalian: ${tanggal}',
                                     style: TextStyle(
-                                        color: Colors.black.withOpacity(0.6)),
+                                        color: Colors.white.withOpacity(0.6)),
                                   ),
                                 ],
                               ),
@@ -207,24 +225,29 @@ class _ProductPageState extends State<UserIndividu> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Expanded(
+                                flex: 2,
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: TextField(
                                     //set size field
-                                    style: TextStyle(fontSize: 14),
-                                    cursorHeight: 1,
+                                    style: TextStyle(
+                                        fontSize: 14, color: Colors.white),
 
                                     controller: _daysController,
                                     keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
-                                      labelText: 'Additional days',
-                                      border: OutlineInputBorder(),
+                                      labelText: 'Hari tambahan',
+                                      labelStyle: TextStyle(
+                                        color: Colors.grey,
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.grey)),
                                     ),
                                   ),
                                 ),
                               ),
-
-                              // Your existing ElevatedButton for extending the loan
+                              SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
                                   if (_daysController!.text.isNotEmpty) {
@@ -234,25 +257,23 @@ class _ProductPageState extends State<UserIndividu> {
                                     DateTime newReturnDate = currentReturnDate
                                         .add(Duration(days: additionalDays));
 
-                                    // Here, you would call your logic to update the loan with the new return date.
-                                    // For example:
                                     extendLoan(
                                         buku.peminjamanId, newReturnDate);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    primary: Colors.red),
+                                    backgroundColor: Colors.pink),
                                 child: Text('Extend',
                                     style: TextStyle(color: Colors.white)),
                               ),
-                              SizedBox(width: 8),
+                              SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
                                   // Return book logic
                                   returnBook(buku.peminjamanId.toString());
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    primary: Colors.red),
+                                    backgroundColor: Colors.pink),
                                 child: Text('Return',
                                     style: TextStyle(color: Colors.white)),
                               ),

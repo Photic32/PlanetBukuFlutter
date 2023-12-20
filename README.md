@@ -2,7 +2,8 @@
 
 Tugas Kelompok Akhir Semester PBP E05
 
-Deployed on : http://planetbuku-e05-tk.pbp.cs.ui.ac.id
+Deployed on : https://planetbuku1.firdausfarul.repl.co/ (main deployment)
+              https://planetbukutes-95487a8dd763.herokuapp.com/ (backup deployment)
 
 # Anggota Kelompok 👥
 
@@ -39,7 +40,13 @@ Untuk menambahkan dan mengedit informasi buku menggunakan Form, akan dikirimkan 
 ## Lihat deskripsi buku (User) 🔍📖 (Alma)
 User dapat mencari dan melihat detail dari informasi buku dan melakukan peminjaman, user juga dapat melihat review dan memberikan review pada buku tersebut.
 
-Proses pengolahan buku akan dilakukan dengan merequest data object Book dari Webserver Django dalam bentuk JSON. Hal serupa juga dilakukan untuk melihat review dan pemberian review. Review akan ditampilkan dengan merequest data object Review dari Webserver dalam bentuk JSON. Form review akan diubah dalam bentuk JSON sehingga terhubung dengan database Django. Peminjaman buku juga akan terhubung dengan database Django melalui konversi data ke bentuk JSON. 
+Proses pengolahan buku akan dilakukan dengan merequest data object Book dari Webserver Django dalam bentuk JSON. Hal serupa juga dilakukan untuk melihat review dan pemberian review. Review akan ditampilkan dengan merequest data object Review dari Webserver dalam bentuk JSON. Form review akan diubah dalam bentuk JSON sehingga terhubung dengan database Django. Peminjaman buku juga akan terhubung dengan database Django melalui konversi data ke bentuk JSON.
+
+**Endpoint yang digunakan**
+1. `/adminbook/get_books_json/'` untuk mendapatkan semua data buku. Method `GET`
+2. `/browse/get-review-json/<int:book_pk>/'` untuk mendapatkan data review sesuai buku yang dilihat. Method `GET`
+3. `/browse/add-to-cart-flutter/<int:book_pk>` untuk menambahkan buku pada cart. Method `GET`
+4. `/browse/give-review-flutter/<int:book_pk>/` untuk memberikan review. Method `POST`
 
 ## Homepage (User) 🏠📱 (Mahdy)
 User dapat mendaftarkan akun baru atau login dengan akun yang sudah ada. Pada homepage, user dapat melihat waktu terdekat dari deadline pengembalian buku yang ada. User juga dapat membuka keranjang dari buku yang belum finalisasi peminjaman dan mengedit detail peminjaman pada keranjang.

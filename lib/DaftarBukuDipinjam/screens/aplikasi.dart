@@ -45,9 +45,10 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
           title: const Center(
             child: Text('Buku Dipinjam dan Dikembalikan'),
           ),
-          backgroundColor: Colors.grey[850],
-          foregroundColor: Colors.pink,
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
+        backgroundColor: Colors.grey[850],
         drawer: const LeftDrawer(),
         body: FutureBuilder(
             future: fetchProduct(),

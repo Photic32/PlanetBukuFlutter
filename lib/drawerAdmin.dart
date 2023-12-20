@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:planetbuku/home/screens/aplikasi.dart';
-import 'package:planetbuku/LihatBuku/screens/aplikasi.dart';
-import 'package:planetbuku/DaftarBukuDipinjam/screens/aplikasi.dart';
-import 'package:planetbuku/home/screens/cart.dart';
+import 'package:planetbuku/home/screens/aplikasi_admin.dart';
+import 'package:planetbuku/DaftarPeminjam/screens/aplikasi.dart';
+import 'package:planetbuku/EditBuku/screens/aplikasi.dart';
 import 'package:provider/provider.dart';
 
-class LeftDrawer extends StatelessWidget {
-  const LeftDrawer({super.key});
+class AdminDrawer extends StatelessWidget {
+  const AdminDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,49 +48,37 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => HomeAdminPage(),
                   ));
             },
           ),
           ListTile(
-            leading: const Icon(Icons.shelves, color: Colors.pink,),
-            title: const Text('Browse Books',
+            leading: const Icon(Icons.edit_attributes, color: Colors.pink,),
+            title: const Text('Edit Books',
                 style: TextStyle(color: Colors.white)),
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LihatBuku(),
+                    builder: (context) => EditBuku(),
                   ));
             },
           ),
           ListTile(
-            leading: const Icon(Icons.book_rounded, color: Colors.pink,),
-            title: const Text('Borrowed Books',
+            leading: const Icon(Icons.person, color: Colors.pink,),
+            title: const Text('Edit Borrowers',
                 style: TextStyle(color: Colors.white)),
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DaftarBukuDipinjam(),
+                    builder: (context) => DaftarPeminjam(),
                   ));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.trolley, color: Colors.pink,),
-            title: const Text('Cart',
-                style: TextStyle(color: Colors.white)),
-            // Bagian redirection ke MyHomePage
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductPage(),
-                  ));
-            },
-          ),
+
         ],
       ),
     );

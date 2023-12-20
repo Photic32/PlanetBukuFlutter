@@ -33,10 +33,11 @@ class _KesanFormPageState extends State<KesanFormPage> {
               'Tambahkan Kesan kamu',
             ),
           ),
-          backgroundColor: Colors.grey[850],
-          foregroundColor: Colors.pink,
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
         drawer: const LeftDrawer(),
+        backgroundColor: Colors.grey[850],
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(

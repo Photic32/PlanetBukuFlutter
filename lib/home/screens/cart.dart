@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:planetbuku/home/screens/aplikasi.dart';
 import 'package:planetbuku/home/widgets/shop_card.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:planetbuku/home/models/book.dart';
-import 'package:planetbuku/home/models/keranjang.dart';
-import 'package:planetbuku/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -49,8 +46,13 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
+        backgroundColor: Colors.grey[850],
         appBar: AppBar(
-          title: const Text('Product'),
+          title: Text(
+            "Cart",
+          ),
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
@@ -87,20 +89,52 @@ class _ProductPageState extends State<ProductPage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      "${snapshot.data![index].fields.title}",
-                                      style: const TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "${snapshot.data![index].fields.title}",
+                                        style: const TextStyle(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
                                       ),
                                     ),
                                     const SizedBox(height: 10),
-                                    Text(
-                                        "${snapshot.data![index].fields.author}"),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Author : ${snapshot.data![index].fields.author}",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                     const SizedBox(height: 10),
-                                    Text(
-                                        "${snapshot.data![index].fields.publicationYear}"),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Stock : ${snapshot.data![index].fields.stock}",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Author : ${snapshot.data![index].fields.author}",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Stock : ${snapshot.data![index].fields.stock}",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                     TextButton(
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.pink,
+                                      ),
                                       onPressed: () async {
                                         int idUser =
                                             request.jsonData["user_id"];
@@ -137,6 +171,9 @@ class _ProductPageState extends State<ProductPage> {
                                       child: const Text('Borrow'),
                                     ),
                                     TextButton(
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: Colors.pink,
+                                      ),
                                       onPressed: () async {
                                         int idUser =
                                             request.jsonData["user_id"];

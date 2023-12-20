@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:planetbuku/EditBuku/models/book.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 
 class EditBuku extends StatefulWidget {
   const EditBuku({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class EditBuku extends StatefulWidget {
 class _EditBukuState extends State<EditBuku> {
   Future<List<Book>> fetchProduct() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-    var url = Uri.parse('https://planetbuku1.firdausfarul.repl.co/adminbook/get_books_json/');
+    var url = Uri.parse(
+        'https://planetbuku1.firdausfarul.repl.co/adminbook/get_books_json/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/get_books_json"},
@@ -35,8 +37,6 @@ class _EditBukuState extends State<EditBuku> {
     return list_books;
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +44,9 @@ class _EditBukuState extends State<EditBuku> {
       appBar: AppBar(
         title: const Text('Edit Informasi Buku'),
         backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
-      drawer: const LeftDrawer(),
+      drawer: const AdminDrawer(),
       body: FutureBuilder(
         future: fetchProduct(),
         builder: (context, AsyncSnapshot snapshot) {
@@ -71,7 +72,8 @@ class _EditBukuState extends State<EditBuku> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => EditBookPage(item: snapshot.data![index]),
+                        builder: (context) =>
+                            EditBookPage(item: snapshot.data![index]),
                       ),
                     );
                   },
@@ -82,7 +84,8 @@ class _EditBukuState extends State<EditBuku> {
                       vertical: 12,
                     ),
                     padding: const EdgeInsets.all(20.0),
-                    child: Row( // Menggunakan Row untuk menyusun gambar dan teks secara horizontal
+                    child: Row(
+                      // Menggunakan Row untuk menyusun gambar dan teks secara horizontal
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Gambar
@@ -91,7 +94,8 @@ class _EditBukuState extends State<EditBuku> {
                           width: 80,
                           fit: BoxFit.cover,
                         ),
-                        const SizedBox(width: 16), // Memberi jarak antara gambar dan teks
+                        const SizedBox(
+                            width: 16), // Memberi jarak antara gambar dan teks
                         // Informasi Buku
                         Expanded(
                           child: Column(
@@ -106,9 +110,11 @@ class _EditBukuState extends State<EditBuku> {
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              Text("Stock : ${snapshot.data![index].fields.stock}"),
+                              Text(
+                                  "Stock : ${snapshot.data![index].fields.stock}"),
                               const SizedBox(height: 10),
-                              Text("Penulis : ${snapshot.data![index].fields.author}")
+                              Text(
+                                  "Penulis : ${snapshot.data![index].fields.author}")
                             ],
                           ),
                         ),
@@ -117,7 +123,6 @@ class _EditBukuState extends State<EditBuku> {
                   ),
                 ),
               );
-
             }
           }
         },

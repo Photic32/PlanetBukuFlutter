@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:planetbuku/home/widgets/shop_card.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class HomePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    String userName = request.jsonData["username"];
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -22,10 +26,11 @@ class HomePage extends StatelessWidget {
       drawer: const LeftDrawer(),
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
-        title: const Text(
-          'Shopping List',
+        title: Text(
+          "Welcome to PlanetBuku $userName",
         ),
         backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
@@ -38,11 +43,12 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'PBP Shop', // Text yang menandakan toko
+                  'PlanetBuku', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
               ),

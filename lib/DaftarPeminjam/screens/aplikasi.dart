@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarPeminjam/screens/user_individu.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 
 class DaftarPeminjam extends StatefulWidget {
   const DaftarPeminjam({Key? key}) : super(key: key);
@@ -33,9 +34,15 @@ class _ProductPageState extends State<DaftarPeminjam> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Daftar Peminjam'),
+          title: const Text(
+            'Daftar Peminjam',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
-        drawer: const LeftDrawer(),
+        backgroundColor: Colors.grey[850],
+        drawer: const AdminDrawer(),
         body: FutureBuilder(
             future: fetchUser(),
             builder: (context, AsyncSnapshot snapshot) {
@@ -63,6 +70,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 16),
@@ -72,6 +80,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                           itemBuilder: (context, index) {
                             return Card(
                               child: ListTile(
+                                tileColor: Colors.grey[800],
                                 title: Row(
                                   children: <Widget>[
                                     Expanded(
@@ -80,6 +89,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -88,6 +98,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                         'User Id : ${snapshot.data[index].userId.toString()}',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -96,6 +107,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                         'Books Borrowed: ${snapshot.data[index].jumlahBukuDipinjam}',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),

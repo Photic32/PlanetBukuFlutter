@@ -44,8 +44,8 @@ class BookDetailPageState extends State<BookDetailPage> {
   Future<void> addToCart(BuildContext context, String bookId) async {
     final request = context.read<CookieRequest>();
     try {
-      var response = await request
-          .get('https://planetbuku1.firdausfarul.repl.co/browse/add-to-cart-flutter/$bookId/');
+      var response = await request.get(
+          'https://planetbuku1.firdausfarul.repl.co/browse/add-to-cart-flutter/$bookId/');
       if (response != null && response["status"]) {
         if (!context.mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
@@ -115,7 +115,7 @@ class BookDetailPageState extends State<BookDetailPage> {
             Row(
               children: [
                 SizedBox(
-                  width: 100,
+                  width: 120,
                   height: 150,
                   child: Image.network(
                     widget.book.fields.imageL,
@@ -151,49 +151,50 @@ class BookDetailPageState extends State<BookDetailPage> {
                   ),
                 ),
                 const SizedBox(width: 16),
-                SizedBox(
-                  width: 100,
-                  height: 45,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: widget.book.fields.stock > 0
-                          ? Colors.pink
-                          : Colors.grey[800],
-                    ),
-                    onPressed: widget.book.fields.stock > 0
-                        ? () async {
-                            if (request.loggedIn) {
-                              addToCart(context, widget.book.pk.toString());
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Center(
-                                    child: Text(
-                                      'Please log in first',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  backgroundColor: Colors.pink,
-                                ),
-                              );
-                            }
-                          }
-                        : null,
-                    child: Text(
-                      widget.book.fields.stock > 0 ? 'Add to cart' : 'No Stock',
-                      style: TextStyle(
-                        color: widget.book.fields.stock > 0
-                            ? const Color(0xffffffff)
-                            : Colors.grey, // Adjust color when disabled
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: 120,
+              height: 36,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: widget.book.fields.stock > 0
+                      ? Colors.pink
+                      : Colors.grey[800],
+                ),
+                onPressed: widget.book.fields.stock > 0
+                    ? () async {
+                        if (request.loggedIn) {
+                          addToCart(context, widget.book.pk.toString());
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Center(
+                                child: Text(
+                                  'Please log in first',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              backgroundColor: Colors.pink,
+                            ),
+                          );
+                        }
+                      }
+                    : null,
+                child: Text(
+                  widget.book.fields.stock > 0 ? 'Add to cart' : 'No Stock',
+                  style: TextStyle(
+                    color: widget.book.fields.stock > 0
+                        ? const Color(0xffffffff)
+                        : Colors.grey,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
             Row(
               children: [
                 const Text(
@@ -311,12 +312,15 @@ class BookDetailPageState extends State<BookDetailPage> {
                                     ],
                                   ),
                                   const SizedBox(width: 60),
-                                  Text("${snapshot.data![index].rate}/5",
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.pink[100],
-                                        backgroundColor: Colors.pink[900],
-                                      )),
+                                  Expanded(
+                                    child:
+                                        Text("${snapshot.data![index].rate}/5",
+                                            style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.pink[100],
+                                              backgroundColor: Colors.pink[900],
+                                            )),
+                                  ),
                                 ],
                               ),
                               const SizedBox(height: 4),
