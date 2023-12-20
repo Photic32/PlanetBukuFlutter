@@ -3,7 +3,6 @@ import 'package:planetbuku/home/screens/aplikasi.dart';
 import 'package:planetbuku/LihatBuku/screens/aplikasi.dart';
 import 'package:planetbuku/DaftarBukuDipinjam/screens/aplikasi.dart';
 import 'package:planetbuku/home/screens/cart.dart';
-import 'package:provider/provider.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -62,7 +61,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LihatBuku(),
+                    builder: (context) => const LihatBuku(),
                   ));
             },
           ),
@@ -75,7 +74,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DaftarBukuDipinjam(),
+                    builder: (context) => const DaftarBukuDipinjam(),
                   ));
             },
           ),
@@ -88,7 +87,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductPage(),
+                    builder: (context) => const ProductPage(),
                   ));
             },
           ),

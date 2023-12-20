@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:planetbuku/home/screens/aplikasi_admin.dart';
 import 'package:planetbuku/DaftarPeminjam/screens/aplikasi.dart';
 import 'package:planetbuku/EditBuku/screens/aplikasi.dart';
-import 'package:provider/provider.dart';
 
 class AdminDrawer extends StatelessWidget {
   const AdminDrawer({super.key});
@@ -61,7 +60,7 @@ class AdminDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EditBuku(),
+                    builder: (context) => const EditBuku(),
                   ));
             },
           ),
@@ -74,7 +73,7 @@ class AdminDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DaftarPeminjam(),
+                    builder: (context) => const DaftarPeminjam(),
                   ));
             },
           ),

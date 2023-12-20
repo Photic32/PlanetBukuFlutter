@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:planetbuku/home/screens/aplikasi_guest.dart';
 import 'package:planetbuku/LihatBuku/screens/aplikasi.dart';
 import 'package:planetbuku/home/screens/login.dart';
-import 'package:provider/provider.dart';
 
 class GuestDrawer extends StatelessWidget {
   const GuestDrawer({super.key});
@@ -61,7 +60,7 @@ class GuestDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LihatBuku(),
+                    builder: (context) => const LihatBuku(),
                   ));
             },
           ),
@@ -74,7 +73,7 @@ class GuestDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginPage(),
+                    builder: (context) => const LoginPage(),
                   ));
             },
           ),

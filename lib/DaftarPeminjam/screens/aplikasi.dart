@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:planetbuku/DaftarPeminjam/models/user.dart';
-import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarPeminjam/screens/user_individu.dart';
@@ -21,13 +20,13 @@ class _ProductPageState extends State<DaftarPeminjam> {
       'https://planetbuku1.firdausfarul.repl.co/adminusers/all_user_json/',
     );
     // melakukan konversi data json menjadi object Product
-    List<User> list_user = [];
+    List<User> listUser = [];
     for (var d in response) {
       if (d != null) {
-        list_user.add(User.fromJson(d));
+        listUser.add(User.fromJson(d));
       }
     }
-    return list_user;
+    return listUser;
   }
 
   @override
@@ -35,9 +34,9 @@ class _ProductPageState extends State<DaftarPeminjam> {
     final request = context.watch<CookieRequest>();
     Widget drawer;
     if (request.loggedIn) {
-      drawer = AdminDrawer();
+      drawer = const AdminDrawer();
     } else {
-      drawer = SizedBox.shrink(); // Empty placeholder if not admin
+      drawer = const SizedBox.shrink(); // Empty placeholder if not admin
     }
     return Scaffold(
         appBar: AppBar(
@@ -70,8 +69,8 @@ class _ProductPageState extends State<DaftarPeminjam> {
                 } else {
                   return Column(
                     children: [
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         'Daftar Peminjam', // Text yang menandakan toko
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -80,7 +79,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Expanded(
                         child: ListView.builder(
                           itemCount: snapshot.data.length,
@@ -93,7 +92,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                     Expanded(
                                       child: Text(
                                         snapshot.data[index].username,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -103,7 +102,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                     Expanded(
                                       child: Text(
                                         'User Id : ${snapshot.data[index].userId.toString()}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
                                         ),
@@ -112,7 +111,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                     Expanded(
                                       child: Text(
                                         'Books Borrowed: ${snapshot.data[index].jumlahBukuDipinjam}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
                                         ),
