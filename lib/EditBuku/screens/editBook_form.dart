@@ -75,9 +75,10 @@ class _EditBookPageState extends State<EditBookPage> {
             'Form Edit Buku',
           ),
         ),
-      backgroundColor: Colors.grey[850],
-        foregroundColor:  Colors.pink,
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
+      backgroundColor: Colors.grey[850],
       drawer: const AdminDrawer(),
       body: Form(
         key: _formKey,

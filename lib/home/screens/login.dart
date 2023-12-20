@@ -46,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('Login'),
         backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -101,9 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[850],
-                    textStyle: TextStyle(
-                    color: Colors.white)),
+                        backgroundColor: Colors.grey[850],
+                        textStyle: TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
@@ -117,9 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[850],
-                    textStyle: TextStyle(
-                    color: Colors.white)),
+                        backgroundColor: Colors.grey[850],
+                        textStyle: TextStyle(color: Colors.white)),
                     onPressed: () async {
                       String username = _usernameController.text;
                       String password = _passwordController.text;
@@ -188,9 +187,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[850],
-                    textStyle: TextStyle(
-                    color: Colors.white)),
+                        backgroundColor: Colors.grey[850],
+                        textStyle: TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
