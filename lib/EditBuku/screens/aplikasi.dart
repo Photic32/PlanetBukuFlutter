@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:planetbuku/EditBuku/models/book.dart';
+import 'package:provider/provider.dart';
 
 class EditBuku extends StatefulWidget {
   const EditBuku({Key? key}) : super(key: key);
@@ -39,6 +40,8 @@ class _EditBukuState extends State<EditBuku> {
 
   @override
   Widget build(BuildContext context) {
+    // final request = context.watch<CookieRequest>();
+
     return Scaffold(
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
@@ -57,7 +60,7 @@ class _EditBukuState extends State<EditBuku> {
                 children: [
                   Text(
                     "Tidak ada data buku.",
-                    style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
                   ),
                   SizedBox(height: 8),
                 ],
@@ -67,8 +70,9 @@ class _EditBukuState extends State<EditBuku> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (_, index) => GestureDetector(
                   onTap: () {
-                    // Navigasi ke halaman EditBookPage dengan membawa data buku
-                    Navigator.push(
+                    // Navigasi ke halaman EditBookPage sesuai buku yang dipilih
+
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditBookPage(item: snapshot.data![index]),
@@ -83,40 +87,43 @@ class _EditBukuState extends State<EditBuku> {
                     ),
                     padding: const EdgeInsets.all(20.0),
                     child: Row( // Menggunakan Row untuk menyusun gambar dan teks secara horizontal
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Gambar
-                        Image.network(
-                          "${snapshot.data![index].fields.imageL}",
-                          width: 80,
-                          fit: BoxFit.cover,
-                        ),
-                        const SizedBox(width: 16), // Memberi jarak antara gambar dan teks
-                        // Informasi Buku
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${snapshot.data![index].fields.title}",
-                                style: const TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Gambar
+                            Image.network(
+                              "${snapshot.data![index].fields.imageL}",
+                              width: 80,
+                              fit: BoxFit.cover,
+                            ),
+                            const SizedBox(width: 16), // Memberi jarak antara gambar dan teks
+                            // Informasi Buku
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${snapshot.data![index].fields.title}",
+                                    style: const TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text("Stock : ${snapshot.data![index].fields.stock}"),
+                                  const SizedBox(height: 10),
+                                  Text("Penulis : ${snapshot.data![index].fields.author}")
+                                ],
                               ),
-                              const SizedBox(height: 10),
-                              Text("Stock : ${snapshot.data![index].fields.stock}"),
-                              const SizedBox(height: 10),
-                              Text("Penulis : ${snapshot.data![index].fields.author}")
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
+                      
                     ),
                   ),
-                ),
-              );
+                  );
+
+
 
             }
           }
