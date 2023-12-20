@@ -30,6 +30,7 @@ class HomePage extends StatelessWidget {
           "Welcome to PlanetBuku $userName",
         ),
         backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
