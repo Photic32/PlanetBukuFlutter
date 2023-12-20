@@ -46,6 +46,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
+        backgroundColor: Colors.grey[850],
         appBar: AppBar(
           title: Text(
             "Cart",

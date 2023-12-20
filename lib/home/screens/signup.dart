@@ -121,6 +121,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 runSpacing: 20,
                 children: [
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[850],
+                    textStyle: TextStyle(
+                    color: Colors.white)),
                     onPressed: () async {
                       String username = _usernameController.text;
                       String password1 = _password1Controller.text;
@@ -174,6 +178,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: const Text('Register'),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[850],
+                    textStyle: TextStyle(
+                    color: Colors.white)),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
@@ -187,6 +195,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: const Text('Login Page'),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[850],
+                    textStyle: TextStyle(
+                    color: Colors.white)),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
