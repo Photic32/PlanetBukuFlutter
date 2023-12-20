@@ -1,9 +1,11 @@
-# Planet Buku 🌍📚
+# Planet Buku 🌍📚 [![Build status](https://build.appcenter.ms/v0.1/apps/24a6aaf4-0af3-4a8e-ae1e-3d0bcad4ce76/branches/main/badge)](https://appcenter.ms)
 
 Tugas Kelompok Akhir Semester PBP E05
 
-Deployed on : https://planetbuku1.firdausfarul.repl.co/ (main deployment)
-              https://planetbukutes-95487a8dd763.herokuapp.com/ (backup deployment)
+Deployed on : https://planetbuku1.firdausfarul.repl.co/ (main deployment), https://planetbukutes-95487a8dd763.herokuapp.com/ (backup deployment)
+
+Donwload on : https://install.appcenter.ms/orgs/photic32/apps/planet-buku-rev/distribution_groups/public
+
 
 # Anggota Kelompok 👥
 
