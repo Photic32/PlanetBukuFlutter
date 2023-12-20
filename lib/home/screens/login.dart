@@ -2,7 +2,6 @@ import 'package:planetbuku/home/screens/aplikasi.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:planetbuku/home/screens/aplikasi_admin.dart';
 import 'package:planetbuku/home/screens/aplikasi_guest.dart';
 import 'package:planetbuku/home/screens/signup.dart';
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               controller: _usernameController,
               decoration: const InputDecoration(
                 enabledBorder: UnderlineInputBorder(
@@ -74,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 12.0),
             TextField(
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               controller: _passwordController,
               decoration: const InputDecoration(
                 enabledBorder: UnderlineInputBorder(
@@ -102,25 +101,23 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[850],
-                    textStyle: TextStyle(
-                    color: Colors.white)),
+                        backgroundColor: Colors.grey[850],
+                        textStyle: const TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                        MaterialPageRoute(builder: (context) => const RegisterPage()),
                       );
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(SnackBar(content: Text("Register")));
+                        ..showSnackBar(const SnackBar(content: Text("Register")));
                     },
                     child: const Text('Register'),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[850],
-                    textStyle: TextStyle(
-                    color: Colors.white)),
+                        backgroundColor: Colors.grey[850],
+                        textStyle: const TextStyle(color: Colors.white)),
                     onPressed: () async {
                       String username = _usernameController.text;
                       String password = _passwordController.text;
@@ -139,9 +136,9 @@ class _LoginPageState extends State<LoginPage> {
                       if (request.loggedIn) {
                         String message = response['message'];
                         String uname = response['username'];
-                        bool is_staff = response['is_staff'];
+                        bool isStaff = response['is_staff'];
 
-                        if (is_staff == true) {
+                        if (isStaff == true) {
                           // Map<String, Cookie> id = request.cookies;
                           // id.forEach((k, v) => debugPrint("Key : $k, Value : $v"));
                           Navigator.pushReplacement(
@@ -189,9 +186,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[850],
-                    textStyle: TextStyle(
-                    color: Colors.white)),
+                        backgroundColor: Colors.grey[850],
+                        textStyle: const TextStyle(color: Colors.white)),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
@@ -200,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(SnackBar(
+                        ..showSnackBar(const SnackBar(
                             content: Text("Selamat datang, Guest User.")));
                     },
                     child: const Text('Login as Guest'),

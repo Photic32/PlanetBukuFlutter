@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:planetbuku/DaftarPeminjam/models/user.dart';
-import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarPeminjam/models/peminjam.dart';
@@ -21,10 +20,7 @@ class _ProductPageState extends State<UserIndividu> {
     final request = context.watch<CookieRequest>();
     User temp = widget.pengguna;
     var response = await request.get(
-      'https://planetbuku1.firdausfarul.repl.co/adminusers/search_book/?user_id=' +
-          temp.userId.toString() +
-          '&query=' +
-          query,
+      'https://planetbuku1.firdausfarul.repl.co/adminusers/search_book/?user_id=${temp.userId}&query=$query',
     );
     // melakukan konversi data json menjadi object Product
     Peminjam peminjam = Peminjam.fromJson(response);
@@ -36,8 +32,7 @@ class _ProductPageState extends State<UserIndividu> {
     final request = context.read<CookieRequest>();
     try {
       var response = await request.get(
-        'https://planetbuku1.firdausfarul.repl.co/adminusers/kembali_buku/' +
-            bookId,
+        'https://planetbuku1.firdausfarul.repl.co/adminusers/kembali_buku/$bookId',
       );
       if (response != null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -61,14 +56,9 @@ class _ProductPageState extends State<UserIndividu> {
     final request = context.read<CookieRequest>();
     try {
       var response = await request.postJson(
-          'https://planetbuku1.firdausfarul.repl.co/adminusers/edit_peminjaman/' +
-              bookId.toString(),
+          'https://planetbuku1.firdausfarul.repl.co/adminusers/edit_peminjaman/$bookId',
           jsonEncode(<String, String>{
-            'tanggal_pengembalian': newReturnDate.year.toString() +
-                '-' +
-                newReturnDate.month.toString() +
-                '-' +
-                newReturnDate.day.toString(),
+            'tanggal_pengembalian': '${newReturnDate.year}-${newReturnDate.month}-${newReturnDate.day}',
           }));
       if (response != null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -92,7 +82,10 @@ class _ProductPageState extends State<UserIndividu> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Daftar Peminjam'),
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
+      backgroundColor: Colors.grey[850],
       drawer: const AdminDrawer(), // Assuming LeftDrawer is a defined widget
       body: FutureBuilder<Peminjam>(
         future: fetchUser(searchController.text),
@@ -106,15 +99,15 @@ class _ProductPageState extends State<UserIndividu> {
           }
 
           var peminjam = snapshot.data!;
-          Map<int, TextEditingController> _controllers = {};
+          Map<int, TextEditingController> controllers = {};
 
           return Column(children: <Widget>[
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 "Buku yang dipinjam oleh ${widget.pengguna.username}",
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -124,15 +117,15 @@ class _ProductPageState extends State<UserIndividu> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 controller: searchController,
                 decoration: InputDecoration(
                   labelText: 'Search Books',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.white,
                   ),
                   suffixIcon: IconButton(
-                    icon: IconTheme(
+                    icon: const IconTheme(
                       data: IconThemeData(
                         color: Colors.white,
                       ),
@@ -150,15 +143,11 @@ class _ProductPageState extends State<UserIndividu> {
               itemCount: peminjam.bukuDipinjam.length,
               itemBuilder: (BuildContext context, int index) {
                 var buku = peminjam.bukuDipinjam[index];
-                String tanggal = buku.deadline.day.toString() +
-                    '-' +
-                    buku.deadline.month.toString() +
-                    '-' +
-                    buku.deadline.year.toString();
-                if (!_controllers.containsKey(index)) {
-                  _controllers[index] = TextEditingController();
+                String tanggal = '${buku.deadline.day}-${buku.deadline.month}-${buku.deadline.year}';
+                if (!controllers.containsKey(index)) {
+                  controllers[index] = TextEditingController();
                 }
-                var _daysController = _controllers[index];
+                var daysController = controllers[index];
                 return Card(
                   color: Colors.grey[800],
                   elevation: 4.0,
@@ -173,18 +162,16 @@ class _ProductPageState extends State<UserIndividu> {
                           children: <Widget>[
                             Image.network(
                               buku.image,
-                              width: 50,
-                              height: 100,
                               fit: BoxFit.cover,
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
                                     buku.title,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -192,22 +179,22 @@ class _ProductPageState extends State<UserIndividu> {
                                   ),
                                   Text(
                                     buku.author,
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
                                     'ISBN : ${buku.isbn}',
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
                                     'Status : ${buku.status}',
-                                    style: TextStyle(color: Colors.grey),
+                                    style: const TextStyle(color: Colors.grey),
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   Text(
-                                    'Deadline Pengembalian: ${tanggal}',
+                                    'Deadline Pengembalian: $tanggal',
                                     style: TextStyle(
                                         color: Colors.white.withOpacity(0.6)),
                                   ),
@@ -226,12 +213,12 @@ class _ProductPageState extends State<UserIndividu> {
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: TextField(
                                     //set size field
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 14, color: Colors.white),
 
-                                    controller: _daysController,
+                                    controller: daysController,
                                     keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       labelText: 'Hari tambahan',
                                       labelStyle: TextStyle(
                                         color: Colors.grey,
@@ -243,12 +230,12 @@ class _ProductPageState extends State<UserIndividu> {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
-                                  if (_daysController!.text.isNotEmpty) {
+                                  if (daysController!.text.isNotEmpty) {
                                     int additionalDays =
-                                        int.tryParse(_daysController.text) ?? 0;
+                                        int.tryParse(daysController.text) ?? 0;
                                     DateTime currentReturnDate = buku.deadline;
                                     DateTime newReturnDate = currentReturnDate
                                         .add(Duration(days: additionalDays));
@@ -259,10 +246,10 @@ class _ProductPageState extends State<UserIndividu> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.pink),
-                                child: Text('Extend',
+                                child: const Text('Extend',
                                     style: TextStyle(color: Colors.white)),
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               ElevatedButton(
                                 onPressed: () {
                                   // Return book logic
@@ -270,13 +257,13 @@ class _ProductPageState extends State<UserIndividu> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.pink),
-                                child: Text('Return',
+                                child: const Text('Return',
                                     style: TextStyle(color: Colors.white)),
                               ),
                             ],
                           )
                         else if (buku.status == 'dikembalikan')
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Text(

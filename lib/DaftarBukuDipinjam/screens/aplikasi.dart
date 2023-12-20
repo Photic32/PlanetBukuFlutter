@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarBukuDipinjam/models/BukuKesan.dart';
 import 'package:planetbuku/DaftarBukuDipinjam/screens/kesanForm.dart';
-import 'package:planetbuku/DaftarPeminjam/models/peminjam.dart';
-import 'package:planetbuku/DaftarPeminjam/models/user.dart';
-import 'package:planetbuku/EditBuku/models/book.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:planetbuku/DaftarBukuDipinjam/models/BukuDipinjam.dart';
 
 class DaftarBukuDipinjam extends StatefulWidget {
   const DaftarBukuDipinjam({Key? key}) : super(key: key);
@@ -46,11 +42,10 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
           title: const Text(
             'Buku Dipinjam dan Dikembalikan',
             style: TextStyle(color: Colors.white),
- 
           ),
           backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
-        
         drawer: const LeftDrawer(),
         body: FutureBuilder(
             future: fetchProduct(),
@@ -72,15 +67,14 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                 } else {
                   return Column(
                     children: [
-                      Text(
+                      const Text(
                         'Buku yang Dipinjam',
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Expanded(
                         child: ListView.builder(
                             itemCount: snapshot.data!.dipinjam.length,
@@ -97,23 +91,24 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                           snapshot.data!.dipinjam[index].image),
                                       ListTile(
                                         title: Text(
-                                          snapshot.data!.dipinjam[index].title,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white)
-                                          
-                                        ),
+                                            snapshot
+                                                .data!.dipinjam[index].title,
+                                            textAlign: TextAlign.center,
+                                            style:
+                                                const TextStyle(color: Colors.white)),
                                         subtitle: Text(
-                                          snapshot.data!.dipinjam[index].author,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white)
-                                        ),
+                                            snapshot
+                                                .data!.dipinjam[index].author,
+                                            textAlign: TextAlign.center,
+                                            style:
+                                                const TextStyle(color: Colors.white)),
                                       ),
                                       ListTile(
                                         title: Text(
-                                          'Tanggal Pengembalian: ${snapshot.data!.dipinjam[index].deadline}',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(color: Colors.white)
-                                        ),
+                                            'Tanggal Pengembalian: ${snapshot.data!.dipinjam[index].deadline}',
+                                            textAlign: TextAlign.center,
+                                            style:
+                                                const TextStyle(color: Colors.white)),
                                       ),
                                       ElevatedButton(
                                         onPressed: () async {
@@ -135,7 +130,7 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                                 'Failed to return book: ${response.statusCode}');
                                           }
                                         },
-                                        child: Text('Kembalikan Buku'),
+                                        child: const Text('Kembalikan Buku'),
                                       ),
                                     ],
                                   ),
@@ -143,15 +138,14 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                               }
                             }),
                       ),
-                      Text(
+                      const Text(
                         'Buku yang Dikembalikan',
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Expanded(
                           child: ListView.builder(
                               itemCount: snapshot.data!.dikembalikan.length,
@@ -164,37 +158,33 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                       crossAxisAlignment: CrossAxisAlignment
                                           .center, // Align the children in the center horizontally
                                       children: [
-                                        Image.network(snapshot.data!.dikembalikan[index].image),
+                                        Image.network(snapshot
+                                            .data!.dikembalikan[index].image),
                                         ListTile(
                                           title: Text(
-                                              snapshot.data!.dikembalikan[index].title,
+                                              snapshot.data!.dikembalikan[index]
+                                                  .title,
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(color: Colors.white)
-                                          
-                                          ),
-                                              
-                                              
+                                              style: const TextStyle(
+                                                  color: Colors.white)),
                                           subtitle: Text(
                                               snapshot.data!.dikembalikan[index]
                                                   .author,
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(color: Colors.white)
-                                          
-                                          ),
-                                              
+                                              style: const TextStyle(
+                                                  color: Colors.white)),
                                         ),
                                         ListTile(
-                                          title: Text(
-                                            'Kesan',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(color: Colors.white)
-                                          ),
+                                          title: const Text('Kesan',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white)),
                                           subtitle: Text(
-                                            snapshot.data!.dikembalikan[index]
-                                                .kesan,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(color: Colors.white)
-                                          ),
+                                              snapshot.data!.dikembalikan[index]
+                                                  .kesan,
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                  color: Colors.white)),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -212,7 +202,7 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                                                 .bookId)),
                                               );
                                             },
-                                            child: Text('Add Kesan'),
+                                            child: const Text('Add Kesan'),
                                           ),
                                         ),
                                       ],

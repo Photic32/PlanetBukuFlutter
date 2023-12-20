@@ -87,9 +87,9 @@ class LihatBukuState extends State<LihatBuku> {
     final request = context.watch<CookieRequest>();
     Widget drawer;
     if (request.loggedIn) {
-      drawer = LeftDrawer();
+      drawer = const LeftDrawer();
     } else {
-      drawer = GuestDrawer(); // Empty placeholder if not admin
+      drawer = const GuestDrawer(); // Empty placeholder if not admin
     }
     return MaterialApp(
       title: 'Search Books',
@@ -107,6 +107,7 @@ class LihatBukuState extends State<LihatBuku> {
             ),
           ),
           backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
         body: Column(
           children: [

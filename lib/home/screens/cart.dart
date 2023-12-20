@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:planetbuku/home/screens/aplikasi.dart';
-import 'package:planetbuku/home/widgets/shop_card.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:planetbuku/home/models/book.dart';
@@ -22,24 +21,22 @@ class _ProductPageState extends State<ProductPage> {
     int idUser = jsonData["user_id"];
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     var url = Uri.parse(
-        'https://planetbuku1.firdausfarul.repl.co/get-buku-keranjang-id/' +
-            idUser.toString() +
-            '/');
+        'https://planetbuku1.firdausfarul.repl.co/get-buku-keranjang-id/$idUser/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     // melakukan konversi data json menjadi object Product
-    List<Book> list_keranjang = [];
+    List<Book> listKeranjang = [];
     for (var d in data) {
       if (d != null) {
-        list_keranjang.add(Book.fromJson(d));
+        listKeranjang.add(Book.fromJson(d));
       }
     }
     // Keranjang keranjangUser = list_keranjang[0];
     // List<int> nomorBuku = keranjangUser.fields.bookList;
 
-    return list_keranjang;
+    return listKeranjang;
   }
 
   @override
@@ -48,10 +45,11 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
         backgroundColor: Colors.grey[850],
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Cart",
-            ),
-          backgroundColor: Colors.pink
+          ),
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
@@ -88,29 +86,31 @@ class _ProductPageState extends State<ProductPage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(padding: EdgeInsets.only(left:10),
-                                      child: 
-                                        Text(
-                                          "${snapshot.data![index].fields.title}",
-                                          style: const TextStyle(
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "${snapshot.data![index].fields.title}",
+                                        style: const TextStyle(
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white
-                                            
-                                          ),
-                                        ),
+                                            color: Colors.white),
+                                      ),
                                     ),
                                     const SizedBox(height: 10),
-                                    Padding(padding: EdgeInsets.only(left:10),
-                                      child: 
-                                      Text(
-                                          "Author : ${snapshot.data![index].fields.author}", style: TextStyle(color: Colors.white),),                                    
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Author : ${snapshot.data![index].fields.author}",
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
                                     ),
                                     const SizedBox(height: 10),
-                                    Padding(padding: EdgeInsets.only(left:10),
-                                      child: 
-                                      Text(
-                                          "Stock : ${snapshot.data![index].fields.stock}", style: TextStyle(color: Colors.white),),                                    
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        "Stock : ${snapshot.data![index].fields.stock}",
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
                                     ),
                                     TextButton(
                                       style: TextButton.styleFrom(

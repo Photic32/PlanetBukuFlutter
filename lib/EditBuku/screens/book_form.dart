@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/EditBuku/models/book.dart';
 import 'package:planetbuku/EditBuku/screens/aplikasi.dart';
-import 'package:planetbuku/drawer.dart';
-import 'package:planetbuku/home/screens/aplikasi_admin.dart';
 import 'package:provider/provider.dart';
 import 'package:planetbuku/drawerAdmin.dart';
 
@@ -40,9 +38,10 @@ class _BookFormPageState extends State<BookFormPage> {
             'Form Tambah Buku',
           ),
         ),
-        backgroundColor: Colors.grey[850],
-        foregroundColor: Colors.pink,
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
+      backgroundColor: Colors.grey[850],
       drawer: const AdminDrawer(),
       body: Form(
         key: _formKey,
@@ -270,7 +269,7 @@ class _BookFormPageState extends State<BookFormPage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 201, 142, 124)),
+                          const Color.fromARGB(255, 201, 142, 124)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
@@ -296,7 +295,7 @@ class _BookFormPageState extends State<BookFormPage> {
                           ));
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => EditBuku()),
+                            MaterialPageRoute(builder: (context) => const EditBuku()),
                           );
                         } else {
                           ScaffoldMessenger.of(context)

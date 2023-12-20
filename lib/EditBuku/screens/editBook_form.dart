@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/EditBuku/models/book.dart';
 import 'package:planetbuku/EditBuku/screens/aplikasi.dart';
-import 'package:planetbuku/drawer.dart';
-import 'package:planetbuku/home/screens/aplikasi_admin.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 import 'package:planetbuku/drawerAdmin.dart';
 
 List<Book> books = [];
@@ -37,15 +34,15 @@ class _EditBookPageState extends State<EditBookPage> {
   String _imageM = "";
   String _imageL = "";
   int _publicationYear = 0;
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _stockController = TextEditingController();
-  TextEditingController _authorController = TextEditingController();
-  TextEditingController _publicationYearController = TextEditingController();
-  TextEditingController _isbnController = TextEditingController();
-  TextEditingController _publisherController = TextEditingController();
-  TextEditingController _imageSController = TextEditingController();
-  TextEditingController _imageMController = TextEditingController();
-  TextEditingController _imageLController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _stockController = TextEditingController();
+  final TextEditingController _authorController = TextEditingController();
+  final TextEditingController _publicationYearController = TextEditingController();
+  final TextEditingController _isbnController = TextEditingController();
+  final TextEditingController _publisherController = TextEditingController();
+  final TextEditingController _imageSController = TextEditingController();
+  final TextEditingController _imageMController = TextEditingController();
+  final TextEditingController _imageLController = TextEditingController();
 
 
 @override
@@ -75,9 +72,10 @@ class _EditBookPageState extends State<EditBookPage> {
             'Form Edit Buku',
           ),
         ),
-      backgroundColor: Colors.grey[850],
-        foregroundColor:  Colors.pink,
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
       ),
+      backgroundColor: Colors.grey[850],
       drawer: const AdminDrawer(),
       body: Form(
         key: _formKey,
@@ -315,7 +313,7 @@ class _EditBookPageState extends State<EditBookPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 201, 142, 124)),
+                      backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 201, 142, 124)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
@@ -342,7 +340,7 @@ class _EditBookPageState extends State<EditBookPage> {
                               ));
                               Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => EditBuku()),
+                                  MaterialPageRoute(builder: (context) => const EditBuku()),
                               );
                           } else {
                               ScaffoldMessenger.of(context)

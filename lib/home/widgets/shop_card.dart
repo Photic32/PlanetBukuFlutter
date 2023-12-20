@@ -3,7 +3,6 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 import 'package:planetbuku/DaftarBukuDipinjam/screens/aplikasi.dart';
-import 'package:planetbuku/home/screens/aplikasi.dart';
 import 'package:planetbuku/DaftarPeminjam/screens/aplikasi.dart';
 import 'package:planetbuku/LihatBuku/screens/aplikasi.dart';
 import 'package:planetbuku/EditBuku/screens/aplikasi.dart';
@@ -35,37 +34,37 @@ class ShopCard extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DaftarBukuDipinjam(),
+                  builder: (context) => const DaftarBukuDipinjam(),
                 ));
           } else if (item.name == "Peminjam Buku") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DaftarPeminjam(),
+                  builder: (context) => const DaftarPeminjam(),
                 ));
           } else if (item.name == "Lihat Buku") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LihatBuku(),
+                  builder: (context) => const LihatBuku(),
                 ));
           } else if (item.name == "Edit Buku") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EditBuku(),
+                  builder: (context) => const EditBuku(),
                 ));
           } else if (item.name == "Lihat Cart") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProductPage(),
+                  builder: (context) => const ProductPage(),
                 ));
           } else if (item.name == "Login") {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const LoginPage(),
                 ));
           } else if (item.name == "Logout") {
             final response = await request.logout(
@@ -79,11 +78,11 @@ class ShopCard extends StatelessWidget {
               ));
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             } else {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("$message"),
+                content: Text(message),
               ));
             }
           }

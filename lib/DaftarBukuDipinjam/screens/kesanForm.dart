@@ -33,10 +33,11 @@ class _KesanFormPageState extends State<KesanFormPage> {
               'Tambahkan Kesan kamu',
             ),
           ),
-          backgroundColor: Colors.grey[850],
-          foregroundColor: Colors.pink,
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.white,
         ),
         drawer: const LeftDrawer(),
+        backgroundColor: Colors.grey[850],
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -73,7 +74,7 @@ class _KesanFormPageState extends State<KesanFormPage> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 201, 142, 124)),
+                                const Color.fromARGB(255, 201, 142, 124)),
                           ),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
@@ -93,7 +94,7 @@ class _KesanFormPageState extends State<KesanFormPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          DaftarBukuDipinjam()),
+                                          const DaftarBukuDipinjam()),
                                 );
                               } else {
                                 ScaffoldMessenger.of(context)
