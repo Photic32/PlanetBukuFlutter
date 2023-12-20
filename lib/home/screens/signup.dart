@@ -143,7 +143,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ..hideCurrentSnackBar()
                         ..showSnackBar(SnackBar(
                             content: Text("$message Selamat datang, $uname.")));
-                      
                     } else {
                       showDialog(
                         context: context,
@@ -162,7 +161,20 @@ class _RegisterPageState extends State<RegisterPage> {
                       );
                     }
                   },
-                  child: const Text('Login'),
+                  child: const Text('Register'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                            SnackBar(content: Text("Selamat datang, Guest User.")));
+                    },
+                    child: const Text('Login Page'),
                   ),
                   ElevatedButton(
                     onPressed: () {
