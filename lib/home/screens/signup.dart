@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:planetbuku/home/screens/aplikasi_admin.dart';
 import 'package:planetbuku/home/screens/aplikasi_guest.dart';
-import 'package:planetbuku/home/screens/signup.dart';
+import 'package:planetbuku/home/screens/login.dart';
 
 void main() {
   runApp(const LoginApp());
@@ -22,21 +22,22 @@ class LoginApp extends StatelessWidget {
         canvasColor: Colors.grey[850],
         primarySwatch: Colors.pink,
       ),
-      home: const LoginPage(),
+      home: const RegisterPage(),
     );
   }
 }
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _password1Controller = TextEditingController();
+  final TextEditingController _password2Controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 12.0),
             TextField(
               style: TextStyle(color: Colors.white),
-              controller: _passwordController,
+              controller: _password1Controller,
               decoration: const InputDecoration(
                 enabledBorder: UnderlineInputBorder(      
                   borderSide: BorderSide(color: Colors.white),   
@@ -87,6 +88,24 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             ),
             const SizedBox(height: 24.0),
+            TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _password2Controller,
+              decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(      
+                  borderSide: BorderSide(color: Colors.white),   
+                ), 
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                ),
+                border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.pink),
+                ),
+                labelText: 'Confirm Your Password',
+                labelStyle: TextStyle(color: Colors.white,),
+              ),
+            ),
+            const SizedBox(height: 12.0),
             Container(
               margin: const EdgeInsets.only(top: 10.0),
               child: Wrap(
@@ -94,66 +113,41 @@ class _LoginPageState extends State<LoginPage> {
                 runSpacing: 20,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()),
-                      );
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                            SnackBar(content: Text("Register")));
-                    },
-                    child: const Text('Register'),
-                  ),
-                  ElevatedButton(
                   onPressed: () async {
                     String username = _usernameController.text;
-                    String password = _passwordController.text;
+                    String password1 = _password1Controller.text;
+                    String password2 = _password2Controller.text;
 
                 // Cek kredensial
                 // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                 // Untuk menyambungkan Android emulator dengan Django pada localhost,
                 // gunakan URL http://10.0.2.2/
-                final response = await request.login(
-                    "https://planetbukutes-95487a8dd763.herokuapp.com/auth/login/", {
+                //https://planetbuku1.firdausfarul.repl.co/auth/register/
+                //https://planetbukutes-95487a8dd763.herokuapp.com/auth/register/
+                final response = await request.post(
+                    "https://planetbukutes-95487a8dd763.herokuapp.com/auth/register/", {
                   'username': username,
-                  'password': password,
+                  'password1': password1,
+                  'password2' : password2,
                 });
-
-                    if (request.loggedIn) {
+                    if (response['status'] == true) {
                       String message = response['message'];
                       String uname = response['username'];
-                      bool is_staff = response['is_staff'];
-
-                      if (is_staff == true) {
-                        // Map<String, Cookie> id = request.cookies;
-                        // id.forEach((k, v) => debugPrint("Key : $k, Value : $v"));
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeAdminPage()),
-                        );
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                              content: Text("$message Selamat datang, $uname.")));
-                      } else {
-                        // String temp = response.toString();
-                        // debugPrint('$temp');
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                        ScaffoldMessenger.of(context)
-                          ..hideCurrentSnackBar()
-                          ..showSnackBar(SnackBar(
-                              content: Text("$message Selamat datang, $uname.")));
-                      }
+                      // String temp = response.toString();
+                      // debugPrint('$temp');
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(SnackBar(
+                            content: Text("$message Selamat datang, $uname.")));
                     } else {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: const Text('Login Gagal'),
+                          title: const Text('Signup Gagal'),
                           content: Text(response['message']),
                           actions: [
                             TextButton(
@@ -167,7 +161,20 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }
                   },
-                  child: const Text('Login'),
+                  child: const Text('Register'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                            SnackBar(content: Text("Selamat datang, Guest User.")));
+                    },
+                    child: const Text('Login Page'),
                   ),
                   ElevatedButton(
                     onPressed: () {
