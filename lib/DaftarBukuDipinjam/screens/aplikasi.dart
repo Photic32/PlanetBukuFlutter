@@ -41,13 +41,16 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey[850],
         appBar: AppBar(
-          title: const Center(
-            child: Text('Buku Dipinjam dan Dikembalikan'),
+          title: const Text(
+            'Buku Dipinjam dan Dikembalikan',
+            style: TextStyle(color: Colors.white),
+ 
           ),
-          backgroundColor: Colors.grey[850],
-          foregroundColor: Colors.pink,
+          backgroundColor: Colors.pink,
         ),
+        
         drawer: const LeftDrawer(),
         body: FutureBuilder(
             future: fetchProduct(),
@@ -74,6 +77,7 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
                       SizedBox(height: 10),
@@ -95,16 +99,20 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                         title: Text(
                                           snapshot.data!.dipinjam[index].title,
                                           textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white)
+                                          
                                         ),
                                         subtitle: Text(
                                           snapshot.data!.dipinjam[index].author,
                                           textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white)
                                         ),
                                       ),
                                       ListTile(
                                         title: Text(
                                           'Tanggal Pengembalian: ${snapshot.data!.dipinjam[index].deadline}',
                                           textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.white)
                                         ),
                                       ),
                                       ElevatedButton(
@@ -140,6 +148,7 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
                       SizedBox(height: 10),
@@ -155,27 +164,36 @@ class _DaftarBukuDipinjamState extends State<DaftarBukuDipinjam> {
                                       crossAxisAlignment: CrossAxisAlignment
                                           .center, // Align the children in the center horizontally
                                       children: [
-                                        Image.network(snapshot
-                                            .data!.dikembalikan[index].image),
+                                        Image.network(snapshot.data!.dikembalikan[index].image),
                                         ListTile(
                                           title: Text(
-                                              snapshot.data!.dikembalikan[index]
-                                                  .title,
-                                              textAlign: TextAlign.center),
+                                              snapshot.data!.dikembalikan[index].title,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(color: Colors.white)
+                                          
+                                          ),
+                                              
+                                              
                                           subtitle: Text(
                                               snapshot.data!.dikembalikan[index]
                                                   .author,
-                                              textAlign: TextAlign.center),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(color: Colors.white)
+                                          
+                                          ),
+                                              
                                         ),
                                         ListTile(
                                           title: Text(
                                             'Kesan',
                                             textAlign: TextAlign.center,
+                                            style: TextStyle(color: Colors.white)
                                           ),
                                           subtitle: Text(
                                             snapshot.data!.dikembalikan[index]
                                                 .kesan,
                                             textAlign: TextAlign.center,
+                                            style: TextStyle(color: Colors.white)
                                           ),
                                         ),
                                         Padding(
