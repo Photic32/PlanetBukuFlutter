@@ -55,9 +55,9 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(color: Colors.white),
               controller: _usernameController,
               decoration: const InputDecoration(
-                enabledBorder: UnderlineInputBorder(      
-                  borderSide: BorderSide(color: Colors.white),   
-                ), 
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.pink),
                 ),
@@ -65,7 +65,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   borderSide: BorderSide(color: Colors.pink),
                 ),
                 labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.white,),
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -73,9 +75,9 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(color: Colors.white),
               controller: _password1Controller,
               decoration: const InputDecoration(
-                enabledBorder: UnderlineInputBorder(      
-                  borderSide: BorderSide(color: Colors.white),   
-                ), 
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.pink),
                 ),
@@ -83,7 +85,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   borderSide: BorderSide(color: Colors.pink),
                 ),
                 labelText: 'Password',
-                labelStyle: TextStyle(color: Colors.white,),
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
               ),
               obscureText: true,
             ),
@@ -92,9 +96,9 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(color: Colors.white),
               controller: _password2Controller,
               decoration: const InputDecoration(
-                enabledBorder: UnderlineInputBorder(      
-                  borderSide: BorderSide(color: Colors.white),   
-                ), 
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.pink),
                 ),
@@ -102,7 +106,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   borderSide: BorderSide(color: Colors.pink),
                 ),
                 labelText: 'Confirm Your Password',
-                labelStyle: TextStyle(color: Colors.white,),
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -113,28 +119,60 @@ class _RegisterPageState extends State<RegisterPage> {
                 runSpacing: 20,
                 children: [
                   ElevatedButton(
-                  onPressed: () async {
-                    String username = _usernameController.text;
-                    String password1 = _password1Controller.text;
-                    String password2 = _password2Controller.text;
+                    onPressed: () async {
+                      String username = _usernameController.text;
+                      String password1 = _password1Controller.text;
+                      String password2 = _password2Controller.text;
 
-                // Cek kredensial
-                // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                // Untuk menyambungkan Android emulator dengan Django pada localhost,
-                // gunakan URL http://10.0.2.2/
-                //https://planetbuku1.firdausfarul.repl.co/auth/register/
-                //https://planetbukutes-95487a8dd763.herokuapp.com/auth/register/
-                final response = await request.post(
-                    "https://planetbukutes-95487a8dd763.herokuapp.com/auth/register/", {
-                  'username': username,
-                  'password1': password1,
-                  'password2' : password2,
-                });
-                    if (response['status'] == true) {
-                      String message = response['message'];
-                      String uname = response['username'];
-                      // String temp = response.toString();
-                      // debugPrint('$temp');
+                      // Cek kredensial
+                      // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                      // Untuk menyambungkan Android emulator dengan Django pada localhost,
+                      // gunakan URL http://10.0.2.2/
+                      //https://planetbuku1.firdausfarul.repl.co/auth/register/
+                      //https://planetbukutes-95487a8dd763.herokuapp.com/auth/register/
+                      final response = await request.post(
+                          "https://planetbuku1.firdausfarul.repl.co/auth/register/",
+                          {
+                            'username': username,
+                            'password1': password1,
+                            'password2': password2,
+                          });
+                      if (response['status'] == true) {
+                        String message = response['message'];
+                        String uname = response['username'];
+                        // String temp = response.toString();
+                        // debugPrint('$temp');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(SnackBar(
+                              content:
+                                  Text("$message Selamat datang, $uname.")));
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Signup Gagal'),
+                            content: Text(response['message']),
+                            actions: [
+                              TextButton(
+                                child: const Text('OK'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text('Register'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => LoginPage()),
@@ -142,37 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
                         ..showSnackBar(SnackBar(
-                            content: Text("$message Selamat datang, $uname.")));
-                    } else {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text('Signup Gagal'),
-                          content: Text(response['message']),
-                          actions: [
-                            TextButton(
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                  child: const Text('Register'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                            SnackBar(content: Text("Selamat datang, Guest User.")));
+                            content: Text("Selamat datang, Guest User.")));
                     },
                     child: const Text('Login Page'),
                   ),
@@ -180,22 +188,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeGuestPage()),
+                        MaterialPageRoute(
+                            builder: (context) => HomeGuestPage()),
                       );
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                            SnackBar(content: Text("Selamat datang, Guest User.")));
+                        ..showSnackBar(SnackBar(
+                            content: Text("Selamat datang, Guest User.")));
                     },
                     child: const Text('Login as Guest'),
                   ),
                 ],
               ),
-
-  
             ),
-            
-            
           ],
         ),
       ),

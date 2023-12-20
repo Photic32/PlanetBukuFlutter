@@ -33,7 +33,10 @@ class _ProductPageState extends State<DaftarPeminjam> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Daftar Peminjam'),
+          title: const Text(
+            'Daftar Peminjam',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
@@ -63,6 +66,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 16),
@@ -72,6 +76,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                           itemBuilder: (context, index) {
                             return Card(
                               child: ListTile(
+                                tileColor: Colors.grey[800],
                                 title: Row(
                                   children: <Widget>[
                                     Expanded(
@@ -80,6 +85,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -88,6 +94,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                         'User Id : ${snapshot.data[index].userId.toString()}',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -96,6 +103,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
                                         'Books Borrowed: ${snapshot.data[index].jumlahBukuDipinjam}',
                                         style: TextStyle(
                                           fontSize: 15,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
