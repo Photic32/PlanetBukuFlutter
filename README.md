@@ -96,10 +96,10 @@ User yang belum melakukan registrasi/login dapat mengakses fitur Register/Login
 6. Buat key untuk aplikasi dan mengatur automasi agar skrip CI/CD dengan menjalankan perintah berikut
 
   MAC OS: 
-  keytool -genkey -v -keystore ~/release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release
+  `keytool -genkey -v -keystore ~/release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release`
 
   Windows: 
-  keytool -genkey -v -keystore %userprofile%\release-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias release
+  `keytool -genkey -v -keystore %userprofile%\release-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias release`
 
 7. Pembuatan skrip github action dengan buat sebuah base64 string sebagai representasi dari keystore file yang akan kita simpan.
 8. Buat repository secrets pada repository Github, berisi 
