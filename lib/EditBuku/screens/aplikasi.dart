@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:planetbuku/EditBuku/models/book.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 
 class EditBuku extends StatefulWidget {
   const EditBuku({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class _EditBukuState extends State<EditBuku> {
         title: const Text('Edit Informasi Buku'),
         backgroundColor: Colors.pink,
       ),
-      drawer: const LeftDrawer(),
+      drawer: const AdminDrawer(),
       body: FutureBuilder(
         future: fetchProduct(),
         builder: (context, AsyncSnapshot snapshot) {

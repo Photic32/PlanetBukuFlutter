@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:planetbuku/drawer.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 import 'package:planetbuku/home/widgets/shop_card.dart';
 
 class HomeAdminPage extends StatelessWidget {
@@ -18,11 +18,11 @@ class HomeAdminPage extends StatelessWidget {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      drawer: const LeftDrawer(),
+      drawer: const AdminDrawer(),
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: const Text(
-          'Shopping List',
+          'Welcome Admin PlanetBuku',
         ),
         backgroundColor: Colors.pink,
       ),

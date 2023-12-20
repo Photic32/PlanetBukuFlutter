@@ -7,6 +7,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:planetbuku/home/screens/aplikasi_admin.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:planetbuku/drawerAdmin.dart';
 
 List<Book> books = [];
 
@@ -77,7 +78,7 @@ class _EditBookPageState extends State<EditBookPage> {
       backgroundColor: Colors.grey[850],
         foregroundColor:  Colors.pink,
       ),
-      drawer: const LeftDrawer(),
+      drawer: const AdminDrawer(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

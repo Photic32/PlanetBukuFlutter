@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:planetbuku/home/screens/aplikasi.dart';
+import 'package:planetbuku/home/screens/aplikasi_guest.dart';
 import 'package:planetbuku/LihatBuku/screens/aplikasi.dart';
-import 'package:planetbuku/DaftarBukuDipinjam/screens/aplikasi.dart';
-import 'package:planetbuku/home/screens/cart.dart';
+import 'package:planetbuku/home/screens/login.dart';
 import 'package:provider/provider.dart';
 
-class LeftDrawer extends StatelessWidget {
-  const LeftDrawer({super.key});
+class GuestDrawer extends StatelessWidget {
+  const GuestDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => HomeGuestPage(),
                   ));
             },
           ),
@@ -67,31 +66,19 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.book_rounded, color: Colors.pink,),
-            title: const Text('Borrowed Books',
+            leading: const Icon(Icons.login, color: Colors.pink,),
+            title: const Text('Login',
                 style: TextStyle(color: Colors.white)),
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DaftarBukuDipinjam(),
+                    builder: (context) => LoginPage(),
                   ));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.trolley, color: Colors.pink,),
-            title: const Text('Cart',
-                style: TextStyle(color: Colors.white)),
-            // Bagian redirection ke MyHomePage
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductPage(),
-                  ));
-            },
-          ),
+
         ],
       ),
     );

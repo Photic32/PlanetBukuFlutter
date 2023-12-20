@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarPeminjam/screens/user_individu.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 
 class DaftarPeminjam extends StatefulWidget {
   const DaftarPeminjam({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _ProductPageState extends State<DaftarPeminjam> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        drawer: const LeftDrawer(),
+        drawer: const AdminDrawer(),
         body: FutureBuilder(
             future: fetchUser(),
             builder: (context, AsyncSnapshot snapshot) {

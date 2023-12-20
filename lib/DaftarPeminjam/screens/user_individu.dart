@@ -5,6 +5,7 @@ import 'package:planetbuku/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/DaftarPeminjam/models/peminjam.dart';
+import 'package:planetbuku/drawerAdmin.dart';
 
 class UserIndividu extends StatefulWidget {
   final User pengguna;
@@ -92,7 +93,7 @@ class _ProductPageState extends State<UserIndividu> {
       appBar: AppBar(
         title: const Text('Daftar Peminjam'),
       ),
-      drawer: const LeftDrawer(), // Assuming LeftDrawer is a defined widget
+      drawer: const AdminDrawer(), // Assuming LeftDrawer is a defined widget
       body: FutureBuilder<Peminjam>(
         future: fetchUser(searchController.text),
         builder: (BuildContext context, AsyncSnapshot<Peminjam> snapshot) {

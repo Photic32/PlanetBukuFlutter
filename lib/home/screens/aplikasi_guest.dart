@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:planetbuku/drawer.dart';
+import 'package:planetbuku/drawerGuest.dart';
 import 'package:planetbuku/home/widgets/shop_card.dart';
 
 class HomeGuestPage extends StatelessWidget {
@@ -17,11 +17,11 @@ class HomeGuestPage extends StatelessWidget {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      drawer: const LeftDrawer(),
+      drawer: const GuestDrawer(),
       backgroundColor: Colors.grey[850],
       appBar: AppBar(
         title: const Text(
-          'Shopping List',
+          'Welcome to PlanetBuku',
         ),
         backgroundColor: Colors.pink,
       ),
@@ -36,7 +36,7 @@ class HomeGuestPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'PBP Shop', // Text yang menandakan toko
+                  'PlanetBuku', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
