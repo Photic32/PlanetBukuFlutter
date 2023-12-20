@@ -94,6 +94,7 @@ User yang belum melakukan registrasi/login dapat mengakses fitur Register/Login
 4. Untuk menjalankan proyek flutter, masuk ke direktori anda menyimpan proyek flutter, kemudian jalankan perintah flutter run pada terminal.
 5. Lakukan deployment aplikasi flutter ke AppCenter.
 6. Buat key untuk aplikasi dan mengatur automasi agar skrip CI/CD dengan menjalankan perintah berikut
+
   MAC OS: 
   keytool -genkey -v -keystore ~/release-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias release
 
