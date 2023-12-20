@@ -40,10 +40,9 @@ class _BookFormPageState extends State<BookFormPage> {
             'Form Tambah Buku',
           ),
         ),
-        backgroundColor: Colors.pink,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey[850],
+        foregroundColor: Colors.pink,
       ),
-      backgroundColor: Colors.grey[850],
       drawer: const AdminDrawer(),
       body: Form(
         key: _formKey,

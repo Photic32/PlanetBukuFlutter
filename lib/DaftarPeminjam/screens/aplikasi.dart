@@ -32,6 +32,13 @@ class _ProductPageState extends State<DaftarPeminjam> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    Widget drawer;
+    if (request.loggedIn) {
+      drawer = AdminDrawer();
+    } else {
+      drawer = SizedBox.shrink(); // Empty placeholder if not admin
+    }
     return Scaffold(
         appBar: AppBar(
           title: const Text(

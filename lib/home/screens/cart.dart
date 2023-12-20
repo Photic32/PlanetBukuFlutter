@@ -50,9 +50,8 @@ class _ProductPageState extends State<ProductPage> {
         appBar: AppBar(
           title: Text(
             "Cart",
-          ),
-          backgroundColor: Colors.pink,
-          foregroundColor: Colors.white,
+            ),
+          backgroundColor: Colors.pink
         ),
         drawer: const LeftDrawer(),
         body: FutureBuilder(
@@ -89,47 +88,29 @@ class _ProductPageState extends State<ProductPage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        "${snapshot.data![index].fields.title}",
-                                        style: const TextStyle(
+                                    Padding(padding: EdgeInsets.only(left:10),
+                                      child: 
+                                        Text(
+                                          "${snapshot.data![index].fields.title}",
+                                          style: const TextStyle(
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
+                                            color: Colors.white
+                                            
+                                          ),
+                                        ),
                                     ),
                                     const SizedBox(height: 10),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        "Author : ${snapshot.data![index].fields.author}",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                    Padding(padding: EdgeInsets.only(left:10),
+                                      child: 
+                                      Text(
+                                          "Author : ${snapshot.data![index].fields.author}", style: TextStyle(color: Colors.white),),                                    
                                     ),
                                     const SizedBox(height: 10),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        "Stock : ${snapshot.data![index].fields.stock}",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        "Author : ${snapshot.data![index].fields.author}",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        "Stock : ${snapshot.data![index].fields.stock}",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
+                                    Padding(padding: EdgeInsets.only(left:10),
+                                      child: 
+                                      Text(
+                                          "Stock : ${snapshot.data![index].fields.stock}", style: TextStyle(color: Colors.white),),                                    
                                     ),
                                     TextButton(
                                       style: TextButton.styleFrom(

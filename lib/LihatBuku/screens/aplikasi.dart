@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:planetbuku/drawer.dart';
 import 'package:planetbuku/EditBuku/models/book.dart';
 import 'package:planetbuku/LihatBuku/screens/bookDetail.dart';
 import 'package:planetbuku/LihatBuku/widgets/customBookListItem.dart';
+import 'package:planetbuku/drawerGuest.dart';
+import 'package:provider/provider.dart';
 
 class LihatBuku extends StatefulWidget {
   const LihatBuku({super.key});
@@ -81,6 +84,13 @@ class LihatBukuState extends State<LihatBuku> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    Widget drawer;
+    if (request.loggedIn) {
+      drawer = LeftDrawer();
+    } else {
+      drawer = GuestDrawer(); // Empty placeholder if not admin
+    }
     return MaterialApp(
       title: 'Search Books',
       theme: ThemeData(
@@ -88,7 +98,7 @@ class LihatBukuState extends State<LihatBuku> {
       ),
       home: Scaffold(
         backgroundColor: Colors.grey[850],
-        drawer: const LeftDrawer(),
+        drawer: drawer,
         appBar: AppBar(
           title: const Text(
             'Discover New Books',

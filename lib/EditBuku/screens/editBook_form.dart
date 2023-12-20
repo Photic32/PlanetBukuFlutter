@@ -47,7 +47,8 @@ class _EditBookPageState extends State<EditBookPage> {
   TextEditingController _imageMController = TextEditingController();
   TextEditingController _imageLController = TextEditingController();
 
-  @override
+
+@override
   void initState() {
     super.initState();
 
@@ -55,15 +56,14 @@ class _EditBookPageState extends State<EditBookPage> {
     _titleController.text = widget.item.fields.title;
     _stockController.text = widget.item.fields.stock.toString();
     _authorController.text = widget.item.fields.author;
-    _publicationYearController.text =
-        widget.item.fields.publicationYear.toString();
+    _publicationYearController.text = widget.item.fields.publicationYear.toString();
     _isbnController.text = widget.item.fields.isbn;
     _publisherController.text = widget.item.fields.publisher;
     _imageSController.text = widget.item.fields.imageS;
     _imageMController.text = widget.item.fields.imageM;
     _imageLController.text = widget.item.fields.imageL;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -75,10 +75,9 @@ class _EditBookPageState extends State<EditBookPage> {
             'Form Edit Buku',
           ),
         ),
-        backgroundColor: Colors.pink,
-        foregroundColor: Colors.white,
-      ),
       backgroundColor: Colors.grey[850],
+        foregroundColor:  Colors.pink,
+      ),
       drawer: const AdminDrawer(),
       body: Form(
         key: _formKey,
@@ -113,7 +112,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _stockController,
+                  controller:_stockController,
                   decoration: InputDecoration(
                     hintText: "Stock",
                     labelText: "Stock",
@@ -121,6 +120,7 @@ class _EditBookPageState extends State<EditBookPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
+                  
                   onChanged: (String? value) {
                     setState(() {
                       _stock = int.parse(value!);
@@ -140,7 +140,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _authorController,
+                  controller:_authorController,
                   decoration: InputDecoration(
                     hintText: "Author",
                     labelText: "Author",
@@ -164,7 +164,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _publicationYearController,
+                  controller:_publicationYearController,
                   decoration: InputDecoration(
                     hintText: "Publication Year",
                     labelText: "Publication Year",
@@ -172,6 +172,7 @@ class _EditBookPageState extends State<EditBookPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
+                  
                   onChanged: (String? value) {
                     setState(() {
                       _publicationYear = int.parse(value!);
@@ -191,7 +192,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _isbnController,
+                  controller:_isbnController,
                   decoration: InputDecoration(
                     hintText: "ISBN Buku",
                     labelText: "ISBN Buku",
@@ -215,7 +216,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _publisherController,
+                  controller:_publisherController,
                   decoration: InputDecoration(
                     hintText: "Penerbit Buku",
                     labelText: "Penerbit Buku",
@@ -239,7 +240,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _imageSController,
+                  controller:_imageSController,
                   decoration: InputDecoration(
                     hintText: "Foto Buku S",
                     labelText: "Foto Buku S",
@@ -263,7 +264,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _imageMController,
+                  controller:_imageMController,
                   decoration: InputDecoration(
                     hintText: "Foto Buku M",
                     labelText: "Foto Buku M",
@@ -287,7 +288,7 @@ class _EditBookPageState extends State<EditBookPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _imageLController,
+                  controller:_imageLController,
                   decoration: InputDecoration(
                     hintText: "Foto Buku L",
                     labelText: "Foto Buku L",
@@ -307,23 +308,22 @@ class _EditBookPageState extends State<EditBookPage> {
                     return null;
                   },
                 ),
-              ),
+              ),              
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 201, 142, 124)),
+                      backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 201, 142, 124)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Kirim ke Django dan tunggu respons
-                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                        final response = await request.postJson(
-                            "https://planetbuku1.firdausfarul.repl.co/adminbook/edit-flutter/${widget.item.pk}/",
-                            jsonEncode(<String, dynamic>{
+                          // Kirim ke Django dan tunggu respons
+                          // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                          final response = await request.postJson(
+                          "https://planetbuku1.firdausfarul.repl.co/adminbook/edit-flutter/${widget.item.pk}/",
+                          jsonEncode(<String, dynamic>{
                               'title': _title,
                               'stock': _stock.toString(),
                               'author': _author,
@@ -333,25 +333,26 @@ class _EditBookPageState extends State<EditBookPage> {
                               'image_s': _imageS,
                               'image_m': _imageM,
                               'image_l': _imageL,
-                            }));
-                        if (response['status'] == 'success') {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text("Perubahan berhasil disimpan!"),
-                          ));
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => EditBuku()),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content:
-                                Text("Terdapat kesalahan, silakan coba lagi."),
-                          ));
-                        }
+                              
+                          }));
+                          if (response['status'] == 'success') {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                              content: Text("Perubahan berhasil disimpan!"),
+                              ));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => EditBuku()),
+                              );
+                          } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                  content:
+                                      Text("Terdapat kesalahan, silakan coba lagi."),
+                              ));
+                          }
                       }
-                    },
+                  },
                     child: const Text(
                       "Save",
                       style: TextStyle(color: Colors.white),
