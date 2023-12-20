@@ -2,7 +2,8 @@
 
 Tugas Kelompok Akhir Semester PBP E05
 
-Deployed on : http://planetbuku-e05-tk.pbp.cs.ui.ac.id
+Deployed on : https://planetbuku1.firdausfarul.repl.co/ (main deployment)
+              https://planetbukutes-95487a8dd763.herokuapp.com/ (backup deployment)
 
 # Anggota Kelompok 👥
 
